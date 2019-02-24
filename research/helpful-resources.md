@@ -7,3 +7,15 @@ Here are all the helpful resources that I have looked through to make this proje
 
 
 # Github Links
+
+Here are all the github links that I looked at for this project. Not all the links were useful.
+
+* [ProteinFoldClusters](https://github.com/carlosmartinezvillar/ProteinFoldClusters)
+
+* [DeepMind-alphafold-repl](https://github.com/llSourcell/DeepMind-alphafold-repl)
+
+* [Deep-learning-for-contact_map_v2](https://github.com/doubleQ2018/Deep-learning-for-contact_map_v2)
+
+* [BMI219-2017-ProteinFolding](https://github.com/pfnet-research/BMI219-2017-ProteinFolding)
+
+* [IJCAI2016](https://github.com/icemansina/IJCAI2016)
