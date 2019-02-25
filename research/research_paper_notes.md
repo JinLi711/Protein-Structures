@@ -153,5 +153,8 @@ Read only abstract
 * 2d predictions are independent of rotations and translations of protein
 * to predict 3d structure, we can use information from 1d or 2d structures.
 
-<img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4664312/4689462/4664428/4664428-fig-3-source-large.gif" height="250" width="250">
+* Contact Map:
+<img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4664312/4689462/4664428/4664428-fig-3-source-large.gif" height="500" width="500">
+
+
 
