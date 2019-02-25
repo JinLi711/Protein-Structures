@@ -25,6 +25,8 @@ Here are all the helpful resources that I have looked through to make this proje
 
 * [Multiple sequence alignment](https://en.wikipedia.org/wiki/Multiple_sequence_alignment)
 
+* [CASP](https://en.wikipedia.org/wiki/CASP)
+
 
 
 
@@ -35,6 +37,12 @@ Here are all the helpful resources that I have looked through to make this proje
 
 * [RaptorX](http://raptorx.uchicago.edu/)
     * predict protein structures and functions
+
+* [VMD](https://www.ks.uiuc.edu/Research/vmd/)
+    * for visualizing molecules
+
+* [CMView](http://www.bioinformatics.org/cmview/manual.html)
+    * for visualizing and analyzing network of contacts between residues 
 
 
 
