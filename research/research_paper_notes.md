@@ -184,3 +184,24 @@ Read only abstract
 ## Machine Learning Methods for 4-D Structure Prediction
 
 * WILL COME BACK TO THIS
+
+
+
+
+
+
+# Protein Secondary Structure Prediction Using Cascaded Convolutional and Recurrent Neural Networks
+
+[LINK](https://arxiv.org/pdf/1604.07176.pdf#page=8&zoom=100,0,445)
+
+
+
+
+
+
+
+# Prediction of 8-state protein secondary structures by a novel deep learning architecture
+
+2018
+
+[LINK](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2280-5)
