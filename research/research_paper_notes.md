@@ -132,6 +132,16 @@ Read only abstract
 
 
 
+# Recovery of protein structure from contact maps
+
+[LINK](https://www.sciencedirect.com/science/article/pii/S1359027897000412)
+
+
+
+
+
+
+
 # Machine learning methods for protein structure prediction
 
 [LINK](https://www.ncbi.nlm.nih.gov/pubmed/22274898)
