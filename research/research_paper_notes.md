@@ -1,6 +1,10 @@
 Here are the notes for research papers. I only took notes on what I thought was important for this project.
 
 
+
+
+
+
 # Protein secondary structure prediction with a neural network
 
 [LINK](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC286422/)
@@ -35,3 +39,61 @@ Here are the notes for research papers. I only took notes on what I thought was 
 
 * Includes percentage correct under different parameters (like number of hidden layers, window sizes), correlation coefficients, comparison with other algorithms
 * proposed physicohemical encoding: encode amino acid sequences based on their physicohemical properties of side chains
+
+
+
+
+
+
+
+# Improved prediction of protein secondary structure by use of sequence profiles and neural networks
+
+[LINK](https://www.pnas.org/content/90/16/7558.short)
+
+*Improved prediction of protein secondary structure by use of sequence profiles and neural networks. B Rost, C Sander. Proceedings of the National Academy of Sciences Aug 1993, 90 (16) 7558-7562; DOI: 10.1073/pnas.90.16.7558*
+
+## Abstract 
+
+* combines multiple sequence alignments, balanced training, and structure context training
+* accuracy of 70%
+
+## Point of Reference
+
+* baseline of 62% accuracy
+
+## Use of Multiple Sequence Alignments
+
+* the idea is to leverage the fact that proteins with similar sequences also have similar 3 dimensional folds
+* multiple sequence alignments rather than a single sequence are the inputs
+
+## Balanced Training
+
+* loops are predicted well, helices are predicted rather well, and strands are predicted poorly
+* this is partly due to the inbalance of the training set, which can be solved if we have the training set have the same proportions (1/3 each)
+
+## Training on Structure Context
+
+* though a prediction may have high accuracy, it can be bad at predicting the lengths of sequences 
+* can address this problem by feeding the three state prediction output of the first into a second network, which is trained to recognize the structural context of single residue states, without reference to sequence information
+
+## Jury of Networks
+
+* hard voting of 12 different networks
+
+
+
+
+
+
+# PHD: Predicting one-dimensional protein structure by profile-based neural networks
+
+[LINK](https://www.sciencedirect.com/science/article/pii/S0076687996660339)
+
+Read only abstract
+
+
+## Abstract
+
+* generate multiple sequence alignment
+* feed alignment into neural network system
+
