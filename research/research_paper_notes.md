@@ -9,6 +9,7 @@ Here are the notes for research papers. I only took notes on what I thought was 
 
 [LINK](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC286422/)
 
+1989
 
 *Holley LH, Karplus M. Protein secondary structure prediction with a neural network. Proc Natl Acad Sci U S A. 1989;86(1):152-6.*
 
@@ -50,6 +51,8 @@ Here are the notes for research papers. I only took notes on what I thought was 
 
 [LINK](https://www.pnas.org/content/90/16/7558.short)
 
+1993
+
 *Improved prediction of protein secondary structure by use of sequence profiles and neural networks. B Rost, C Sander. Proceedings of the National Academy of Sciences Aug 1993, 90 (16) 7558-7562; DOI: 10.1073/pnas.90.16.7558*
 
 ## Abstract 
@@ -85,15 +88,70 @@ Here are the notes for research papers. I only took notes on what I thought was 
 
 
 
+
+# Combining evolutionary information and neural networks to predict protein secondary structure
+
+[LINK](https://onlinelibrary.wiley.com/doi/abs/10.1002/prot.340190108)
+
+1994
+
+*Rost, Burkhard, and Chris Sander. “Combining Evolutionary Information and Neural Networks to Predict Protein Secondary Structure.” Proteins: Structure, Function, and Genetics, vol. 19, no. 1, 1994, pp. 55–72., doi:10.1002/prot.340190108.*
+
+Read only abstract
+
+## Abstract
+
+* uses position-specific conservation weight as part of the input
+* include number of insertions and deletions
+* include global amino acid content
+* 71.6% accuracy
+
+
+
+
+
+
+
 # PHD: Predicting one-dimensional protein structure by profile-based neural networks
 
 [LINK](https://www.sciencedirect.com/science/article/pii/S0076687996660339)
 
-Read only abstract
+1996
 
+*Rost, Burkhard. “[31] PHD: Predicting One-Dimensional Protein Structure by Profile-Based Neural Networks.” Methods in Enzymology Computer Methods for Macromolecular Sequence Analysis, 1996, pp. 525–539., doi:10.1016/s0076-6879(96)66033-9.*
+
+Read only abstract
 
 ## Abstract
 
 * generate multiple sequence alignment
 * feed alignment into neural network system
+
+
+
+
+
+
+# Machine learning methods for protein structure prediction
+
+[LINK](https://www.ncbi.nlm.nih.gov/pubmed/22274898)
+
+2008
+
+*Cheng J, Tegge AN, Baldi P. Machine Learning Methods for Protein Structure Prediction. IEEE Reviews in Biomedical Engineering. 2008;1:41–49. pmid:22274898*
+
+## Abstract
+
+* reviews hidden Markov models, neural networks, support vector machines, Bayesian methods, and clustering methods in 1-D, 2-D, 3-D, and 4-D protein structure predictions
+
+## Introduction
+
+* tertiary structure is described by x,y,z coordinates of atoms
+* protein function is determined by structure
+* 40,000 out of 2.5 million known sequences available have solved structures (determined experimentally)
+* 2d prediction focuses on predicting spatial relationships between residues (like distance, contact map predictions, disulfide bond predictions)
+* 2d predictions are independent of rotations and translations of protein
+* to predict 3d structure, we can use information from 1d or 2d structures.
+
+![Contact Map](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4664312/4689462/4664428/4664428-fig-3-source-large.gif | width=100)
 
