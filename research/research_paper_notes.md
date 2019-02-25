@@ -156,5 +156,31 @@ Read only abstract
 * Contact Map:
 <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4664312/4689462/4664428/4664428-fig-3-source-large.gif" height="500" width="500">
 
+## Machine Learning Methods for 1-D Structure Prediction
 
+* input: protein primary sequence
+* ideas include probabilistic models, ensembles of neural networks, SVMs
+* prediction limit of 88%
 
+## Machine Learning Methods for 2-D Structure Prediction
+
+* predict contact maps, which is just a matrix. Each element in this matrix M[i,j] is either 1 or 0, which will depend on whether the Euclidean distance between 2 amino acids at position i,j is above a specified distance threshold. We can measure those distances using the backbone.
+* coarser contact map: use only the secondary structure elements
+* finer contact map: use every atom
+* we use contact maps because they are invariant to translations and rotations
+* we can also use contact maps to infer protein folding rates
+* some machine learning methods include neural networks, self-organizing maps, SVMs
+* use two windows to target 2 amino acids, determine if they are in contact or not (makes this a binary classification). Each position in the window is a vector of 20 numbers (corresponding to 20 profile probabilities)
+* can include other 1D info, including predicted secondary structure 
+* 2D recursive neural network: to address the problem that amino acids outside the window are not being considered.
+* can also try to predict disulfide bonds, very important for structure
+* can also predict beta strand pairing
+* can use Monte Carlo methods to reconstruct 3D structures from contact maps. Though this is usually unreliable.
+
+## Machine Learning Methods for 3-D Structure Prediction
+
+* WILL COME BACK TO THIS
+
+## Machine Learning Methods for 4-D Structure Prediction
+
+* WILL COME BACK TO THIS
