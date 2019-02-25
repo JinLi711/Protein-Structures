@@ -7,3 +7,5 @@ There seems to be many different output labels of protein structure. Some papers
 # February 24, 2019
 
 Starting from the earliest literature and reading from ground up. Going to mainly try to predict tertiary structures (positions in space), but this will still require me understanding how to predict the primary and secondary structures.
+
+Will eventually need to learn how one converts contact maps into tertiary structures. There are many algorithms, not sure which one would be best.
