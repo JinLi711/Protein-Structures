@@ -136,6 +136,20 @@ Read only abstract
 
 [LINK](https://www.sciencedirect.com/science/article/pii/S1359027897000412)
 
+1997
+
+
+
+
+
+
+
+# Mining Protein Contact Maps
+
+[LINK](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.19.488&rep=rep1&type=pdf)
+
+2002
+
 
 
 
@@ -204,7 +218,14 @@ Read only abstract
 
 [LINK](https://arxiv.org/pdf/1604.07176.pdf#page=8&zoom=100,0,445)
 
+2016
 
+
+# Protein contact maps: A binary depiction of protein 3D structures
+
+[LINK](https://www.sciencedirect.com/science/article/pii/S0378437116305507)
+
+2017
 
 
 
