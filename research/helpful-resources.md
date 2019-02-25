@@ -3,18 +3,6 @@ Here are all the helpful resources that I have looked through to make this proje
 
 
 
-# Basics
-
-* [THE BASICS OF PROTEIN STRUCTURE AND FUNCTION](http://www.interactive-biology.com/6711/the-basics-of-protein-structure-and-function/)
-    * This site contains a brief description of the very basics of proteins. It talks about protein functions, structures, and stability.
-
-
-
-
-
-# Research Papers 
-
-* 1989, [Protein secondary structure prediction with a neural network](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC286422/). 
 
 
 
@@ -25,6 +13,28 @@ Here are all the helpful resources that I have looked through to make this proje
 * [Protein Structure Prediction Center](http://predictioncenter.org/)
     * initiates the CASP experiments to challenge researchers to predict protein structures.
     * contains data on proteins. Contains PDB files.
+
+
+
+
+
+
+# Wiki Pages
+
+* [Protein secondary structure](https://en.wikipedia.org/wiki/Protein_secondary_structure)
+
+* [Multiple sequence alignment](https://en.wikipedia.org/wiki/Multiple_sequence_alignment)
+
+
+
+
+# Programs
+
+* [CNS Solve](http://cns-online.org/v1.3/)
+    * used to determine macromolecular structure
+
+* [RaptorX](http://raptorx.uchicago.edu/)
+    * predict protein structures and functions
 
 
 
