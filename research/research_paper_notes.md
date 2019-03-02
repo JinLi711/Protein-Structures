@@ -299,8 +299,6 @@ Read only abstract
         * number of positive and negative labels are unbalanced
 * model was trained on solved protein structures, and tested on CASP and CAMEO
 
-* ![Deep Learning Contact Model](images/journal.pcbi.1005324.g001.PNG)
-
 <img src="images/journal.pcbi.1005324.g001.PNG" height="500" width="500">
 
 
