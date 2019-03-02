@@ -9,7 +9,7 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 |C         | 2/23/2019     | Create all the starting files and directories.
-|D         | NAN    | Find programs to help with protein modelling.
+|D         | NAN    | Find programs to help with protein modeling.
 
 
 # Step 1: Research 
@@ -17,6 +17,7 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 |D         | NAN     | Read through early literature of secondary structure predictions
+|D         | NAN     | Read literature on contact map predictions.
 
 
 # Step 2: Visualization
