@@ -274,6 +274,35 @@ Read only abstract
 
 
 
+# Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model
+
+[LINK](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005324)
+
+2017
+
+*Wang S, Sun S, Li Z, Zhang R, Xu J (2017) Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model. PLoS Comput Biol 13(1): e1005324. https://doi.org/10.1371/journal.pcbi.1005324*
+
+## Abstract
+
+* uses evolutionary coupling(ec) and sequence conservation information with deep residual nn
+
+## Introduction
+
+* de novo protein structure prediction
+* direct evolutionary coupling analysis (DCA)
+* evolutionary coupling analysis (ECA): predicts contacts by identifying co-evolved residues in a protein
+    * but needs a lot of matches to be effective
+* predicting contact map: sort of like pixel level labeling 
+    * though some problems include:
+        * not a ton of research in ML community on pixel level labeling 
+        * contact maps cannot be resized like in actual images
+        * number of positive and negative labels are unbalanced
+* model was trained on solved protein structures, and tested on CASP and CAMEO
+
+
+
+
+
 
 # Prediction of 8-state protein secondary structures by a novel deep learning architecture
 
