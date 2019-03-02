@@ -531,10 +531,11 @@ Read only abstract
 * output: 3D structure
 * model consists of three stages: computation, geometry, and assessment. Call the model Recurrent Geometric Networks (RGN)
     * pass through a sequence, output is converted into angles, which are then converted to coordinates
-
+* assumes fixed bond length and angle
+* will come back to this paper
 
 <img src="images/Recurrent Geometric Networks.png" height="500" width="800">
-* assumes fixed bond length and angle
+
 
 
 
