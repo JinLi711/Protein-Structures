@@ -14,6 +14,9 @@ Here are all the helpful resources that I have looked through to make this proje
     * initiates the CASP experiments to challenge researchers to predict protein structures.
     * contains data on proteins. Contains PDB files.
 
+* [CAMEO](https://www.cameo3d.org/)
+    * a place for evaluating the accuracy of protein predictions
+
 
 
 
