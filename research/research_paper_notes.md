@@ -503,6 +503,44 @@ Read only abstract
 
 
 
+# End-to-end differentiable learning of protein structure
+
+[LINK](https://www.biorxiv.org/content/10.1101/265231v2)
+
+2018
+
+*End-to-end differentiable learning of protein structure. Mohammed AlQuraishi. bioRxiv 265231; doi: https://doi.org/10.1101/265231*
+
+## Abstract
+
+* uses RNN
+* parameterized local protein structures with torsional angle
+* coupled local protein structure to its global representation with recurrent geometric units
+* used differential loss function
+
+## Introduction
+
+* introduces building blocks for constructing end-to-end differentiable model of protein structure
+* want to try to predict protein structure without co-evolutionary information
+
+## Results
+
+### Recurrent Geometric Networks
+
+* input: sequence of amino acids and PSSMs of a protein
+* output: 3D structure
+* model consists of three stages: computation, geometry, and assessment. Call the model Recurrent Geometric Networks (RGN)
+    * pass through a sequence, output is converted into angles, which are then converted to coordinates
+
+
+<img src="images/Recurrent Geometric Networks" height="500" width="500">
+* assumes fixed bond length and angle
+
+
+
+
+
+
 
 # Deep Neural Network for Protein Contact Prediction by Weighting Sequences in a Multiple Sequence Alignment
 
