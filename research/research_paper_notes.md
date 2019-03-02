@@ -301,7 +301,7 @@ Read only abstract
 
 * ![Deep Learning Contact Model](images/journal.pcbi.1005324.g001.PNG)
 
-
+<img src="images/journal.pcbi.1005324.g001.PNG" height="500" width="500">
 
 
 # Prediction of 8-state protein secondary structures by a novel deep learning architecture
