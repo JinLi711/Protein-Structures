@@ -378,9 +378,50 @@ Read only abstract
 
 # Prediction of 8-state protein secondary structures by a novel deep learning architecture
 
+[LINK](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2280-5)
+
 2018
 
-[LINK](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2280-5)
+
+
+
+
+
+
+
+# Deep Neural Network for Protein Contact Prediction by Weighting Sequences in a Multiple Sequence Alignment
+
+[LINK](https://www.biorxiv.org/content/10.1101/331926v1.abstract)
+
+2018
+
+*Deep Neural Network for Protein Contact Prediction by Weighting Sequences in a Multiple Sequence Alignment. Hiroyuki Fukuda, Kentaro Tomii. bioRxiv 331926; doi: https://doi.org/10.1101/331926*
+
+## Abstract
+
+* presents a new approach to contact map prediction by extracting correlation information from MSA using deep learning
+* can weigh each sequence from MSA to reduce noise from sequences
+
+## Introduction
+
+* evolutionary information has noisy signals
+
+## Materials and Methods
+
+* used amino acids from PISCES pdb server that meet these conditions:
+    * sequence identity cutoff: 20%
+    * resolution cutoff: 2.5 Å
+    * R-factor cutoff, 1.0
+    * generated day: July 20, 2017
+    * number of chains: 12094
+* contact distance cutoff was 8A for C-B atoms.
+    * for glycine, C-A atoms were used instead of C-B
+* PDB files has missing values in them
+    * marked it as NaN, and excluded it when calculating loss
+* removed any with >25% sequence identity or having BLAST E-value <0.1 with test set
+* they eliminated proteins with >700 residues or  <25 residues
+* take covariance matrices calculated from MSAs as inputs. Feed that into nn to obtain probability of the contact
+
 
 
 
