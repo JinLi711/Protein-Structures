@@ -370,11 +370,35 @@ Read only abstract
 
 
 
+
+
+
+#A Unified Deep Learning Model for Protein Structure Prediction
+
+[LINK](https://ieeexplore.ieee.org/document/7985752)
+
+2017
+
+*L. Bai and L. Yang, "A Unified Deep Learning Model for Protein Structure Prediction," 2017 3rd IEEE International Conference on Cybernetics (CYBCONF), Exeter, 2017, pp. 1-6. doi: 10.1109/CYBConf.2017.7985752*
+
+## Abstract
+
+* use deep CNN to learn high level relational features
+
+
+
+
+
+
+
+
 # Protein contact maps: A binary depiction of protein 3D structures
 
 [LINK](https://www.sciencedirect.com/science/article/pii/S0378437116305507)
 
 2017
+
+
 
 
 
@@ -523,12 +547,29 @@ Read only abstract
 
 [LINK](https://ieeexplore.ieee.org/abstract/document/8489514)
 
+2018
+
 *L. T. Hattori, C. M. V. Benitez, M. Gutoski, N. M. R. Aquino and H. S. Lopes, "A Novel Approach to Protein Folding Prediction based on Long Short-Term Memory Networks: A Preliminary Investigation and Analysis," 2018 International Joint Conference on Neural Networks (IJCNN), Rio de Janeiro, 2018, pp. 1-8. doi: 10.1109/IJCNN.2018.8489514*
 
 ## Abstract 
 
 * paper explains how they use LSTMs to approach the protein folding problem
 * WILL GET BACK TO THIS
+
+
+
+
+
+
+# Accurate prediction of protein contact maps by coupling residual two-dimensional bidirectional long short-term memory with convolutional neural networks
+
+[LINK](https://academic.oup.com/bioinformatics/article/34/23/4039/5040307)
+
+2018
+
+*Jack Hanson, Kuldip Paliwal, Thomas Litfin, Yuedong Yang, Yaoqi Zhou; Accurate prediction of protein contact maps by coupling residual two-dimensional bidirectional long short-term memory with convolutional neural networks, Bioinformatics, Volume 34, Issue 23, 1 December 2018, Pages 4039–4045, https://doi.org/10.1093/bioinformatics/bty481*
+
+##
 
 
 
