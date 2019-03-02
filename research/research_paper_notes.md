@@ -265,6 +265,20 @@ Read only abstract
 2016
 
 
+
+
+
+
+
+# Protein Secondary Structure Prediction Using Deep Convolutional Neural Fields
+
+[LINK](https://www.nature.com/articles/srep18962)
+
+2016
+
+
+
+
 # Protein contact maps: A binary depiction of protein 3D structures
 
 [LINK](https://www.sciencedirect.com/science/article/pii/S0378437116305507)
