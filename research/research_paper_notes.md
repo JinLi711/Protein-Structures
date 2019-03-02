@@ -367,3 +367,32 @@ Read only abstract
 2018
 
 [LINK](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2280-5)
+
+
+
+
+
+
+
+# Protein tertiary structure modeling driven by deep learning and contact distance prediction in CASP13
+
+[LINK](https://www.biorxiv.org/content/10.1101/552422v1.abstract)
+
+2019
+
+*Protein tertiary structure modeling driven by deep learning and contact distance prediction in CASP13. Jie Hou, Tianqi Wu, Renzhi Cao, Jianlin Cheng. bioRxiv 552422; doi: https://doi.org/10.1101/552422*
+
+## Introduction
+
+* co-evolutionary analysis: based on that two amino acids that are in contact must co-evolve to maintain that contact relationship
+    * if an amino acid were to mutate and change charge, the other amino acid in contact must also change charge for the two to stay in contact
+    * used as inputs
+* integrated 1D, 2D, and 3D structural features for predictions
+
+##  Materials and Method
+
+* take in a protein, run it through protein sequence databases to generate multiple sequence alignments (MSA) to build Position Specific Scoring Matrices (PSSM) and Hidden Markov models (HMM)
+* the intial sequence was also used to predict secondary structure, solvent accessibility, and disorder regions 
+
+
+* Decided to stop reading this because I realized it doesn't really talk about how the model is built, but how it was used and its results.
