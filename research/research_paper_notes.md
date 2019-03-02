@@ -569,7 +569,10 @@ Read only abstract
 
 *Jack Hanson, Kuldip Paliwal, Thomas Litfin, Yuedong Yang, Yaoqi Zhou; Accurate prediction of protein contact maps by coupling residual two-dimensional bidirectional long short-term memory with convolutional neural networks, Bioinformatics, Volume 34, Issue 23, 1 December 2018, Pages 4039–4045, https://doi.org/10.1093/bioinformatics/bty481*
 
-##
+## Abstract 
+
+* RNNs are used since it is great for propagating information throughout the amino acid sequence
+* stacked residual CNNs with bidirectional LSTMs
 
 
 
