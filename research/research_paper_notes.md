@@ -47,6 +47,50 @@ Here are the notes for research papers. I only took notes on what I thought was 
 
 
 
+# Neural network analysis of protein tertiary structure
+
+[LINK](https://www.sciencedirect.com/science/article/pii/089855299090052A)
+
+1990
+
+*Neural network analysis of protein tertiary structure. George L. Wilcox. Marius Poliac. Tetrahedron Computer Methodology Volume 3, Issues 3–4, 1990, Pages 191-204, IN4, 205-211*
+
+## Abstract 
+
+* describes large scale back-propagation neural network for secondary and tertiary structure prediction
+* uses 15 proteins as training
+
+## Introduction
+
+* the predicted output will be a distance matrix
+
+## Methods, Data, and Analysis
+
+* tried several networks, including no layers, 1 layer, 2 layers, layers with direct connections between input and output
+* converted the amino acids into "alphabets" corresponding to their hydrophobicity, as it is an important physico-chemical interaction that drives protein folding.
+    * ex. tyrosine was assigned -3.4, lycine was assigned 3.3, etc.
+    * these numbers were then normalized from -1 to 1
+    * the problem is that many of the residues have similar hydrophobicity
+* the input was 1* 140 (each protein was less than 140 residues long)
+* target was a distance matrix of 140 * 140.
+    * calculated from alpha-carbon coordinates of PDB file
+    * distances were normalized to 1 by dividing by the maximum distance
+    * note that the matrix is symmetrical since d(i,j) = d(j,i). This does create some bias.
+
+## Results
+
+* weights of the neural network was initialized randomly
+* some networks did not converge
+* though RMS errors were low after training, generalization to new protein structures were very poor
+* decreasing the learning rate seemed to have the greatest effect
+
+
+
+
+
+
+
+
 # Improved prediction of protein secondary structure by use of sequence profiles and neural networks
 
 [LINK](https://www.pnas.org/content/90/16/7558.short)
