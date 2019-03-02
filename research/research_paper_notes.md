@@ -533,7 +533,7 @@ Read only abstract
     * pass through a sequence, output is converted into angles, which are then converted to coordinates
 
 
-<img src="images/Recurrent Geometric Networks.png" height="500" width="500">
+<img src="images/Recurrent Geometric Networks.png" height="500" width="800">
 * assumes fixed bond length and angle
 
 
