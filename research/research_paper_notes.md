@@ -258,6 +258,97 @@ Read only abstract
 
 
 
+
+# Soft computing methods for the prediction of protein tertiary structures: A survey
+
+[LINK](https://www.sciencedirect.com/science/article/pii/S1568494615003737)
+
+2015
+
+*Soft computing methods for the prediction of protein tertiary structures: A survey. Alfonso E.Márquez-Chamorro. Applied Soft Computing. Volume 35, October 2015, Pages 398-410.* 
+
+## Introduction: background and purpose
+
+* proteins spontaneously folds into a 3D structure after being created in the ribosome
+* homology methods: based on comparison with existing and known protein structures.
+    * assumes that similar proteins have similar structures
+* threading methods (aka sequence-structure alignment or fold recognition methods) try to align a protein sequence to a 3D structure
+    * based on the idea that evolution conserves structure rather than sequence
+* ab initio methods: find 3D model using just the protein sequence (with laws of chemistry and physics)
+
+## Preliminary Concepts
+
+* homology modeling is usually the first step, then try threading, then finally use ab initio
+* in the ab initio method, we first need to extract relevant data from the protein sequence. Examples of data include:
+    * frequency of appearance of amino acids
+    * physico-chemical properties of the residues
+    * evolutionary information (like position specific scoring matrices or correlated mutations)
+    * 1D predictions like secondary structure (SS) or solvent accessibility
+* predicted output can be contact map or a torsion angle model 
+
+### Input data features
+
+* Evolutionary information:
+    * use position-specific scoring matrices (PSSM) and correlated mutations as input encoding
+    * correlated mutation: tendency for pairs to mutate together
+* Physico-chemical properties:
+    * hydrophobicity
+    * polarity
+    * volume of residues
+    * graph shape index 
+    * isoelectric point
+* Secondary structures
+    * predicting the location of α-helices, β-sheets and turns
+* Sequence separation distance
+    * higher the distance, the lower the probability that the two amino acids are bonded
+* Protein length and protein molecular weight
+    * length refers to # of amino acids in the sequence
+
+### Output data models
+
+* Torsion angle model
+    * Ramachandran plot can help with which angles are not possible
+    * determine rotation of protein structure
+* Lattice model
+    * represent each amino acid as a pair (x, y), where these denote the coordinates of a 2D lattice
+    * can also represent as a directional vector (up, down, left, right) to indicate locations of amino acids with respect to one another
+* Binary contact map
+    * L * L matrix (L is residue length).
+    * 0 if contact, 1 if not. The threshold is usually 8A.
+    * usually use C-A or C-B for measuring distances between two amino acids
+* Distance matrix
+    * used instead of binary contact map because forcing 0 or 1 decreases information
+
+### Performance Metrics
+
+* RMSD between the known coordinates and predicted coordinates
+* Global distance test-Total score: describes % of well-modeled residues in the model with respect to the target
+* TM-score or template modeling score: measures global structural similarity between model and template proteins
+* Accuracy: # of correctly predicted contacts
+* Converage: proportion of predicted contacts / real contacts
+
+## Neural network methods
+
+* check the paper again, since it mentions alot of other papers and their basic idea
+
+## Support Vector Machines
+
+* same as above
+
+## Evolutionary computation
+
+* same as above
+
+## Statistical approaches
+
+* same as above
+
+
+
+
+
+
+
 # Protein Secondary Structure Prediction Using Cascaded Convolutional and Recurrent Neural Networks
 
 [LINK](https://arxiv.org/pdf/1604.07176.pdf#page=8&zoom=100,0,445)
@@ -428,6 +519,23 @@ Read only abstract
 
 
 
+# A Novel Approach to Protein Folding Prediction based on Long Short-Term Memory Networks: A Preliminary Investigation and Analysis
+
+[LINK](https://ieeexplore.ieee.org/abstract/document/8489514)
+
+*L. T. Hattori, C. M. V. Benitez, M. Gutoski, N. M. R. Aquino and H. S. Lopes, "A Novel Approach to Protein Folding Prediction based on Long Short-Term Memory Networks: A Preliminary Investigation and Analysis," 2018 International Joint Conference on Neural Networks (IJCNN), Rio de Janeiro, 2018, pp. 1-8. doi: 10.1109/IJCNN.2018.8489514*
+
+## Abstract 
+
+* paper explains how they use LSTMs to approach the protein folding problem
+* WILL GET BACK TO THIS
+
+
+
+
+
+
+
 
 # Protein tertiary structure modeling driven by deep learning and contact distance prediction in CASP13
 
@@ -450,4 +558,4 @@ Read only abstract
 * the intial sequence was also used to predict secondary structure, solvent accessibility, and disorder regions 
 
 
-* Decided to stop reading this because I realized it doesn't really talk about how the model is built, but how it was used and its results.
+* Decided to stop reading this because I realized it doesn't really talk about how the model is built, but how it was used and its results. However, will definitely look back at this to see what extra elements I can include.
