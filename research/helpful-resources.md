@@ -62,3 +62,12 @@ Here are all the github links that I looked at for this project. Not all the lin
 * [BMI219-2017-ProteinFolding](https://github.com/pfnet-research/BMI219-2017-ProteinFolding)
 
 * [IJCAI2016](https://github.com/icemansina/IJCAI2016)
+
+
+
+
+
+# Other
+
+* [PROTEIN TERTIARY STRUCTURE](https://molbiol-tools.ca/Protein_tertiary_structure.htm)
+    * has links to websites that do tertiary structure prediction
