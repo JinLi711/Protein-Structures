@@ -1,10 +1,36 @@
 Notes on the articles that I've read.
 
+
+# Guide to Understanding PDB Data
+
+[LINK](https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction)
+
+## Introduction to PDB Data
+
+* typical PDB file will contain header info summarizing the protein.
+* some structures may contain information only on the functional part
+* portions of the molecule may be missing
+* most crystallographic structure do not have information on hydrogen atoms
+
+## Dealing with Coordinates
+
+* for each atom, there is the name, number in the file, the name and number of the residue it belongs to, one letter to specify the chain (in oligomeric proteins), its x, y, and z coordinates, and an occupancy and temperature factor
+
+## Small Molecule Ligands
+
+* need to remove ligands
+
+
+
 # THE BASICS OF PROTEIN STRUCTURE AND FUNCTION
 
 [LINK](http://www.interactive-biology.com/6711/the-basics-of-protein-structure-and-function/)
 
 * This site contains a brief description of the very basics of proteins. It talks about protein functions, structures, and stability.
+
+
+
+
 
 
 # AlphaFold @ CASP13: “What just happened?”
