@@ -9,3 +9,9 @@ There seems to be many different output labels of protein structure. Some papers
 Starting from the earliest literature and reading from ground up. Going to mainly try to predict tertiary structures (positions in space), but this will still require me understanding how to predict the primary and secondary structures.
 
 Will eventually need to learn how one converts contact maps into tertiary structures. There are many algorithms, not sure which one would be best.
+
+# March 9, 2019
+
+Just some small notes: when downloading PDB file, we may only want a small chain from it. Is there a way for me to download only that small chain and not the entire molecule since the PDB file for that molecule may be huge?
+
+Using Dunbrack to find PDB ideas, need to parse that file and remove all chain indicators. For example, as one of the results from the search, we got: 7ODCA. We want to only search for 7ODC, but keep in mind that we only want the A chain after the molecule has been downloaded. 
