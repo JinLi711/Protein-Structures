@@ -17,6 +17,11 @@ Here are all the helpful resources that I have looked through to make this proje
 * [CAMEO](https://www.cameo3d.org/)
     * a place for evaluating the accuracy of protein predictions
 
+* [Dunbrack Lab](http://dunbrack.fccc.edu/PISCES.php)
+    * great for getting a list of PDB IDs with certain conditions (like within a resolution cutoff)
+
+* [RCSB](https://www.rcsb.org/#Subcategory-download_structures)
+    * for downloading PDB files
 
 
 
@@ -47,6 +52,12 @@ Here are all the helpful resources that I have looked through to make this proje
 * [CMView](http://www.bioinformatics.org/cmview/manual.html)
     * for visualizing and analyzing network of contacts between residues 
 
+
+
+
+# Python Libraries
+* [Biopython](https://biopython.org/wiki/Documentation)
+* [TensorFlow 2.0 Alpha](https://www.tensorflow.org/install)
 
 
 # Github Links
