@@ -10,6 +10,8 @@ ND - Decided not to do this
 |----------|---------------|-----
 |C         | 2/23/2019     | Create all the starting files and directories.
 |NW         | NAN    | Find programs to help with protein modeling.
+|C         | 3/13/2019     | Gather PDB ids files.
+|D         | NAN    | Parse through the culled files from Dunbrack's server to get only the PDB ideas seperated by commas.
 |D         | NAN    | Find a way to parse the PDB file.
 
 
@@ -17,10 +19,9 @@ ND - Decided not to do this
 
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
-|D        | NAN     | Research on how to read PDB file and things I need to worry about
+|C         | 3/12/2019     | Research on how to read PDB file and things I need to worry about for PDB files
 |NW         | NAN     | Read through early literature of secondary structure predictions
 |NW        | NAN     | Read literature on contact map predictions.
-|D         | NAN     | Search for protein structure data.
 
 
 # Step 2: Visualization
