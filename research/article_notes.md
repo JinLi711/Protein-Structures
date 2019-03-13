@@ -16,9 +16,18 @@ Notes on the articles that I've read.
 
 * for each atom, there is the name, number in the file, the name and number of the residue it belongs to, one letter to specify the chain (in oligomeric proteins), its x, y, and z coordinates, and an occupancy and temperature factor
 
+## R-value and R-free
+
+* measure of the quality of atomic model from crystallography
+* typical values are 0.20
+* random values are 0.63, and perfect is 0
+
 ## Small Molecule Ligands
 
 * need to remove ligands
+
+
+
 
 
 
