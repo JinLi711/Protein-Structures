@@ -21,3 +21,7 @@ Using Dunbrack to find PDB ideas, need to parse that file and remove all chain i
 Use pylint or other something else to check pep8 standards. Need to write good software.
 
 Performed cull1 from Dunbrack.
+
+# March 13, 2019
+
+Spent 2 hours trying to get DSSP to work. What a waste of time. Gave up, going to use RaptorX instead to predict secondary structure.
