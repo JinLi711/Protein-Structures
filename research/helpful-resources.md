@@ -50,7 +50,14 @@ Here are all the helpful resources that I have looked through to make this proje
     * for visualizing molecules
 
 * [CMView](http://www.bioinformatics.org/cmview/manual.html)
-    * for visualizing and analyzing network of contacts between residues 
+    * for visualizing and analyzing network of contacts between residues
+
+* [DSSP](https://swift.cmbi.umcn.nl/gv/dssp/)
+    * Finds secondary structure of existing PDB files
+    * does not do any prediction
+
+* [JPred 4](http://www.compbio.dundee.ac.uk/jpred/)
+    * predicts secondary structure from PDB sequence
 
 
 
@@ -58,6 +65,7 @@ Here are all the helpful resources that I have looked through to make this proje
 # Python Libraries
 * [Biopython](https://biopython.org/wiki/Documentation)
 * [TensorFlow 2.0 Alpha](https://www.tensorflow.org/install)
+* [ProDy](http://prody.csb.pitt.edu/)
 
 
 # Github Links
