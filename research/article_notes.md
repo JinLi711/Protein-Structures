@@ -53,3 +53,19 @@ Notes on the articles that I've read.
 * AlphaFold: co-evolutionary based method: extract evolutionary couplings from protein MSA. Predict whether two amino acids are in contact or not using MSAs. Feed it through an algorithm to predict 3D structure.
 * AlphaFold used a softmax over discretized spatial ranges as outputs, predicting probability distribution over distances
 * Insights from AlphaFold: don't just predict contact maps but also distances
+
+
+
+
+
+# Biopython Tutorial
+
+* can be used to parse through different file formats
+
+## 11.2 Structure representation
+
+* layout of Structure object is: SMCRA (Structure/Model/Chain/Residue/Atom)
+    * A structure consists of models
+    * A model consists of chains
+    * A chain consists of residues
+    * A residue consists of atoms
