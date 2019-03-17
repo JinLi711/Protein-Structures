@@ -59,6 +59,12 @@ Here are all the helpful resources that I have looked through to make this proje
 * [JPred 4](http://www.compbio.dundee.ac.uk/jpred/)
     * predicts secondary structure from PDB sequence
 
+* [PyMol](https://pymol.org/2/)
+    * for visualizing molecules 
+
+* [Modeller](https://salilab.org/modeller/)
+    * for visualizing molecules
+
 
 
 
