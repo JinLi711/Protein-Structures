@@ -25,3 +25,7 @@ Performed cull1 from Dunbrack.
 # March 13, 2019
 
 Spent 2 hours trying to get DSSP to work. What a waste of time. Gave up, going to use RaptorX instead to predict secondary structure.
+
+# March 17, 2019
+
+Tried to look for scripts that fills in missing residues / atoms into PDB file. Couldn't find any that were well integrated into Python. 
