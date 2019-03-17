@@ -69,3 +69,11 @@ Notes on the articles that I've read.
     * A model consists of chains
     * A chain consists of residues
     * A residue consists of atoms
+
+
+
+
+
+# Useful Pictures
+
+* ![Amino Acids](https://www.shutterstock.com/image-illustration/educational-chart-all-common-amino-acids-386426320)
