@@ -11,8 +11,7 @@ ND - Decided not to do this
 |C         | 2/23/2019     | Create all the starting files and directories.
 |NW         | NAN    | Find programs to help with protein modeling.
 |C         | 3/13/2019     | Gather PDB ids files.
-|D         | NAN    | Parse through the culled files from Dunbrack's server to get only the PDB ideas seperated by commas.
-|D         | NAN    | Find a way to parse the PDB file.
+|C         | 3/17/2019    | Parse through the culled files from Dunbrack's server to get only the PDB IDs seperated by commas.
 
 
 # Step 1: Research 
@@ -34,6 +33,7 @@ ND - Decided not to do this
 
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
+|D         | NAN    | Calculate contact map from PDB file and store it as a numpy array. Need to deal with missing residues.
 
 
 # Step 4: Model Building
