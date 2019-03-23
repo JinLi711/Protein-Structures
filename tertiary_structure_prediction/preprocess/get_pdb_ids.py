@@ -3,6 +3,8 @@ Given a culled list of PDB files
 from Dunbrack's server, 
 get only the PDB IDs, ignoring the 
 length, Exptl., resolution, R-factor, and FreeRvalue.
+
+Output a textfile.s
 """
 
 import sys
