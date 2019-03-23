@@ -462,7 +462,8 @@ Read only abstract
     * since there are more noncontacts than contacts in the contact map, they assigned a larger weight to residue pairs forming a contact 
 * l2 norm regularization
 * algorithm was implemented on Theano, and ran on a GPU
-* used minibatch
+* used minibatch 
+    * sorted all proteins by lengths and grouped them in the minibatches
 * 0 padding to shorter proteins
 * paper also includes a bunch of programs used to compare and evaluate results, generate template based modeling, and construct 3D structure with contact assisting folding
 
