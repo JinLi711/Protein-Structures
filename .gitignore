@@ -3,3 +3,5 @@ data/
 tertiary_structure_prediction/data/
 RaptorX_Property_Fast/
 .vscode
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
