@@ -230,7 +230,8 @@ def get_contact_maps(path, cutoff=12.0):
     # will not calculate contact map if it has more than one chain
     other_pdb_files = []
 
-    for pdb_file in pdb_files[:10]:
+    for pdb_file in pdb_files:
+        pdb_id = pdb_file.split('.')[0]
         print("PDB File: ", pdb_file)
 
         structure_id = pdb_file.split('.')[0]
@@ -245,7 +246,7 @@ def get_contact_maps(path, cutoff=12.0):
                 pdb_file,
                 cutoff=cutoff
             )
-            contact_maps[pdb_file] = c_map
+            contact_maps[pdb_id] = c_map
         else:
             print("\tThis protein has more than 1 chain.")
             other_pdb_files.append(pdb_file)
