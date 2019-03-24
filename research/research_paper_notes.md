@@ -436,7 +436,7 @@ Read only abstract
     1. feed sequence into a 1D residual network
         * output is L * n, where n is the number of new features (or hidden neurons) that was created by the last CNN of the network
     2. convert that to a 2D matrix through outer concatenation
-    3. Feed that into the 2nd module with pairwise features
+    3. Feed that into the 2nd module with pairwise features (co-evolution information, pairwise contact and distance potential)
     4. Output of 2D CNN is fed into a logistic regression that predicts prob that any two residues form contact
 
 * predicted accuracy with respect to the number of sequence homologs
