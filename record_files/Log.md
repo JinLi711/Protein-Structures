@@ -1,4 +1,4 @@
-Here is a log of my thoughts, questions, what I could have done better, and whatever else is on my mind. This is mainly for me to jot down ideas, but it can also be used to get insight into my thinking.
+Here is a log of my thoughts, questions, what I could have done better, and whatever else is on my mind.
 
 # February 23, 2019
 
@@ -28,4 +28,16 @@ Spent 2 hours trying to get DSSP to work. What a waste of time. Gave up, going t
 
 # March 17, 2019
 
-Tried to look for scripts that fills in missing residues / atoms into PDB file. Couldn't find any that were well integrated into Python. 
+Tried to look for scripts that fills in missing residues / atoms into PDB file. Couldn't find any that were well integrated into Python.
+
+# March 22, 2019
+
+Couldn't get RaptorX secondary structure prediction to work. It doesn't work and doesn't have any error messages. Great.
+
+Decided that I'm not going to use any existing feature extraction methods (like finding secondary structure, solvent accessibility, etc). I need a proof of concept for now, and I actually plan on creating my own feature extractions (probably in the summer). I also can't find a model that works, has good documentation, and is backed by actualy publications.
+
+# March 23, 2019
+
+It may be interesting to embedd amino acids into vectors instead of one hot encoding it. But all the research papers I've read only used one hot encoding.
+
+Need to download the full cull.
