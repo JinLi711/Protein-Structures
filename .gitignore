@@ -5,3 +5,5 @@ RaptorX_Property_Fast/
 .vscode
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+__pychache__
+Porter5/
