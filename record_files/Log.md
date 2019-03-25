@@ -41,3 +41,7 @@ Decided that I'm not going to use any existing feature extraction methods (like 
 It may be interesting to embedd amino acids into vectors instead of one hot encoding it. But all the research papers I've read only used one hot encoding.
 
 Need to download the full cull.
+
+# March 24, 2019
+
+Took forever to create the inner product layer. Note to self: don't mix the Keras inside Tensorflow with Keras outside.
