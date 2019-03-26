@@ -12,6 +12,8 @@ We do not want PDB files with:
 
 import sys
 from Bio.PDB.PDBParser import PDBParser
+import warnings # it's just discontinues chains warnings
+warnings.filterwarnings("ignore")
 
 
 parser = PDBParser(PERMISSIVE=1)
@@ -42,3 +44,5 @@ def move_pdb_with_multiple_chains(path):
 
         if len(list(model)) != 1:
             move(mypath + pdb_file, path + "removed_pdb_files/" + pdb_file)
+
+move_pdb_with_multiple_chains(path)
