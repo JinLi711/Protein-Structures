@@ -37,6 +37,8 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 |C         | 3/17/2019     | Parse through the culled files from Dunbrack's server to get only the PDB IDs seperated by commas.
+| NW | NAN| Remove all PDB IDs that are known to have more than one chain.
+| NW | NAN| Download PDB files from RSCB server.
 |C         | 3/22/2019     | Move PDB files that we do not want to another folder.
 |C         | 3/22/2019     | Extract only the FASTA sequence that I need.
 |C         | 3/22/2019     | Align the PDB file sequence with FASTA sequence.
@@ -44,8 +46,12 @@ ND - Decided not to do this
 |C         | 3/23/2019     | Convert the amino acid sequence into one hot encodings.
 |C         | 3/23/2019     | Compress data to reduce memory
 |C         | 3/23/2019     | Create two files, one containing one hot encodings and another containing the contact maps. The two files have to align. Note that amino acids have varying lengths
-|C         | 3/23/2019    | Split data into train, valid, and developement test set.
+|C         | 3/23/2019     | Split data into train, valid, and developement test set.
 |C         | 3/23/2019     | Delete intermediary files that I created to reduce space use.
+|C         | 3/25/2019     |  Check that the shapes of inputs and outputs match.
+|C         | 3/25/2019     | Remove all inputs/outputs from dataset where the shape doesn't match. Note that this should be the very last step; I want to remove as few as possible from this step. Count how many were removed (and which were removed).
+| NW | NAN| Create a preprocess output file that describes all relevant information.
+
 
 
 
@@ -54,9 +60,14 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 | C        | 3/23/2019     | Research how to create a model that takes in a variable length input.
-| NW | NAN| Research how to deal with 2 dimensional outputs.
-| NW | NAN| Create my own outer concatenation layer using Keras backend.
-|NW         | NaN    | Sort train set by amino acid sequence length.
+| C        | 3/24/2019     | Research how to have variable size inputs and outputs for the neural net.
+| C        | 3/24/2019     | Research how to deal with 2 dimensional outputs.
+| C        | 3/24/2019     | Create my own outer concatenation layer using Keras backend.
+| C        | 3/24/2019     | Create 1D and 2D residual network block.
+| C        | 3/24/2019     | Create an iterator to feed the neural net.
+|ND         | NaN    | Sort train set by amino acid sequence length.
+| C        | 3/25/2019     | Add in callbacks to the model.
+| C        | 3/25/2019     | Create plotting functions to plot the change in loss function.
 | NW | NAN| Build a baseline model
 
 
