@@ -45,3 +45,13 @@ Need to download the full cull.
 # March 24, 2019
 
 Took forever to create the inner product layer. Note to self: don't mix the Keras inside Tensorflow with Keras outside.
+
+# March 25, 2019
+
+There was a mismatch in size between the input amino acid 1 hot encoding, and the output contact map for some of the proteins.
+
+Some causes that I was able to figure out:
+* when extracting the residues from the PDB IDs, BioPython does not count some codes as residues, even though those residues appear in the fasta sequence. For example, MSE is a modified residue, which is not counted as a residue. There may be others, and I will just need to find the most common ones. Then I will just remove the other proteins that have uncommon residues in the chain. 
+Or I can parse MODRES in the PDB file.
+
+There may be others that I have not found out yet, but sure.
