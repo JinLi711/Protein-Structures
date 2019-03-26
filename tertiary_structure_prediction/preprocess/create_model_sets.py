@@ -1,4 +1,5 @@
 """
+Remove all mismatched input and output sizes.
 Create the train, validation, and development test sets.
 
 Note that the output is a dictionary mapping
@@ -11,6 +12,41 @@ from random import shuffle
 import os
 import numpy as np
 import sys
+
+
+def remove_mismatches(aa, c_map):
+    """
+    If input and output dimensions do not match, 
+    remove the PDB ID, its 1 hot encoding, and
+    its contact map.
+
+    :param aa: dictionary mapping PDB ID to amino acid
+               sequence in 1 hot encoded form
+    :type  aa: dict
+    :param c_maps: dictionary mapping PDB ID to
+                   contact maps
+    :returns: (input, output) with removed mismatches
+    :rtype:   (dict, dict)
+    """
+
+    file = open("log_actions.txt", 'w+')
+    file.write("PDB IDS with mismatched dimensions:\n")
+
+    inputs = aa.copy()
+    outputs = c_map.copy()
+
+    for pdb_id, one_hot in aa.items():
+        aa_dim = one_hot.shape[0]
+        cmap_dim = outputs[pdb_id].shape
+
+        if not ((aa_dim == cmap_dim[0]) and aa_dim == cmap_dim[1]):
+            inputs.pop(pdb_id)
+            outputs.pop(pdb_id)
+            file.write(pdb_id + '\n')
+
+    file.close()
+
+    return inputs, outputs
 
 
 def get_items_from_dict(dict1, list1):
@@ -104,6 +140,8 @@ def create_train_valid_devtest_sets(
 path = "../data/cull%i/" % int (sys.argv[1])
 c_maps = np.load(path + 'contact_map_matrices.npy')[()]
 aa_1_hot = np.load(path + 'amino_acids_1_hot.npy')[()]
+
+aa_1_hot, c_maps = remove_mismatches(aa_1_hot, c_maps)
 
 create_train_valid_devtest_sets(
     aa_1_hot,
