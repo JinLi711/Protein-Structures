@@ -65,6 +65,9 @@ Things that I did not implement, even though I wish I did:
     different layer sizes in residual network
     used sparse categorical crossentropy instead of log
     no weighing of outputs
+    did not have 60 layers for second residual network. 
+    (Too many parameters, memory exploded, not sure 
+    how to deal with this yet).
 """
 
 
@@ -505,6 +508,8 @@ early = tf.keras.callbacks.EarlyStopping(
 )
 
 callbacks_list = [checkpoint, early, reduceLROnPlat]
+
+
 
 if __name__ == "__main__":
 
