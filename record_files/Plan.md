@@ -10,7 +10,7 @@ ND - Decided not to do this
 |----------|---------------|-----
 |C         | 2/23/2019     | Create all the starting files and directories.
 |C         | 3/17/2019     | Find programs to help with protein modeling.
-|C         | 3/13/2019     | Gather PDB ids files.
+|C         | 3/13/2019     | Gather PDB ids files for preliminary testing.
 |D         | NaN    | Add license.
 |D         | NaN    | Find final test set (from CASP or something)
 
@@ -37,7 +37,7 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 |C         | 3/17/2019     | Parse through the culled files from Dunbrack's server to get only the PDB IDs seperated by commas.
-| NW | NAN| Remove all PDB IDs that are known to have more than one chain.
+|C         | 3/26/2019     | Remove all PDB IDs that are known to have more than one chain.
 | NW | NAN| Download PDB files from RSCB server.
 |C         | 3/22/2019     | Move PDB files that we do not want to another folder.
 |C         | 3/22/2019     | Extract only the FASTA sequence that I need.
@@ -50,6 +50,7 @@ ND - Decided not to do this
 |C         | 3/23/2019     | Delete intermediary files that I created to reduce space use.
 |C         | 3/25/2019     |  Check that the shapes of inputs and outputs match.
 |C         | 3/25/2019     | Remove all inputs/outputs from dataset where the shape doesn't match. Note that this should be the very last step; I want to remove as few as possible from this step. Count how many were removed (and which were removed).
+|C         | 3/26/2019     |  Edit bash script with more documentation and make sure everything flows nicely.
 | NW | NAN| Create a preprocess output file that describes all relevant information.
 
 
@@ -65,10 +66,10 @@ ND - Decided not to do this
 | C        | 3/24/2019     | Create my own outer concatenation layer using Keras backend.
 | C        | 3/24/2019     | Create 1D and 2D residual network block.
 | C        | 3/24/2019     | Create an iterator to feed the neural net.
-|ND         | NaN    | Sort train set by amino acid sequence length.
+|ND        | NaN           | Sort train set by amino acid sequence length.
 | C        | 3/25/2019     | Add in callbacks to the model.
 | C        | 3/25/2019     | Create plotting functions to plot the change in loss function.
-| NW | NAN| Build a baseline model
+| C        | 3/26/2019     | Build the model as best as possible.
 
 
 
@@ -76,7 +77,7 @@ ND - Decided not to do this
 
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
-
+| NW | NAN | Use the contact map to create a PDB file.
 
 
 # Step 6: Final Adjustments 
