@@ -83,53 +83,125 @@ def calc_dist_matrix(chain_one, chain_two):
     return answer
 
 
-def get_only_residues(chain):
+def get_only_residues(chain, allowed_residues):
     """
     Given a chain, get only the amino acids.
     Removes all water molecules, ligands, etc.
 
     :param chain: amino acid chain
     :type  chain: Bio.PDB.Chain.Chain
+    :param allowed_residues: list of allowed residues
+    :type  allowed_residues: list
     :returns: list of residues
     :rtype:   list
     """
 
+    allowed_ids = ["H_" + residue for residue in allowed_residues]
+    allowed_ids.append(' ')
+    allowed_ids = set(allowed_ids)
     new_chain = []
     for residue in chain:
         # http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc174
-        if residue.id[0] == ' ':
+        residue_id = residue.id[0]
+        if residue_id in allowed_ids:
             new_chain.append(residue)
     return new_chain
 
 
-def find_missing_resid(path, file_name):
+def find_missing_resid(line):
     """
-    Parse a PDB file to find missing residues
+    Given a line from PDB file, check if it is 
+    the line that indicates a missing residue.
+    
+    example of pdb lines:
+    
+    REMARK 465   M RES C SSSEQI                                                     
+    REMARK 465     GLN A   333                                                      
+    REMARK 465     SER A   446                                                      
+    REMARK 465     GLN A   447
+    
+    :param line: line from PDB file
+    :type  line: str
+    :returns: position of the missing residue
+    :rtype:   int
+    """
+
+    if line[0:10] == 'REMARK 465':
+        split = [line[:10], line[15:18], line[21:26]]
+        # RES is one of the header label
+        if split[1] != "RES":
+            try:
+                missing_resid = int(split[2])
+                return missing_resid
+            except ValueError:
+                return None
+    else:
+        return None
+
+
+def find_mutated_resid(line):
+    """
+    Given a line from PDB file, check if it is 
+    the line that indicates a mutated residue.
+
+    example of PDB line:
+
+    MODRES 1B0B SAC A    1  SER  N-ACETYL-SERINE
+
+    :param line: line from PDB file
+    :type  line: str
+    :returns: 3 letter code for the mutated residue
+    :rtype:   string
+    """
+
+    if line[:6] == 'MODRES':
+        mutated_resid = line.split()[2]
+    else:
+        mutated_resid = None
+    return mutated_resid
+
+
+def parse_pdb_file(path, file_name):
+    """
+    Parse a PDB file again for information that is needed.
+
+    Will extract:
+        missing residues
+        mutated residues  
 
     :param path: path to data
     :type  path: str
     :param file_name: name of PDB file
     :type  file_name: str
-    :returns: list of numbers indicating the missing
-              residue numbers
-    :rtype:   list
+    :returns: dictionary mapping extracted info to its info
+    :rtype:   dict
     """
 
+    missing_resids = []
+    mutated_resids = []
     file = open(path + file_name, 'r').readlines()
-    mis_res = []
     for line in file:
-        if line[0:10] == 'REMARK 465':
-            split = [line[:10], line[15:18], line[21:26]]
-            # RES is one of the header label
-            if split[1] != "RES":
-                try:
-                    mis_res.append(int(split[2]))
-                except ValueError:
-                    pass
-    return mis_res
+        missing_resid = find_missing_resid(line)
+        missing_resids.append(missing_resid)
+
+        mutated_resid = find_mutated_resid(line)
+        mutated_resids.append(mutated_resid)
+
+    def remove_none(list1):
+        rm_none = set(list1).difference({None})
+        return list(rm_none)
+
+    missing_resids = remove_none(missing_resids)
+    mutated_resids = remove_none(mutated_resids)
+
+    parsed_info = {}
+    parsed_info["Missing Residues"] = missing_resids
+    parsed_info["Mutated Residues"] = mutated_resids
+
+    return parsed_info
 
 
-def insert_missing_residues(residues, path, file_name):
+def insert_missing_residues(residues, parse_info):
     """
     Create a fake residue to fill in
     missing residues. The xyz coordinates will
@@ -137,16 +209,14 @@ def insert_missing_residues(residues, path, file_name):
 
     :param residues: list of only residues
     :type  residues: list
-    :param path: path to data
-    :type  path: str
-    :param file_name: name of PDB file
-    :type  file_name: str
+    :param parse_info: dictionary mapping extracted info to its info
+    :type  parse_info: dict
     :returns: list of residues with inserts
     :rtype:   list
     """
 
     new_residues = residues
-    missing_resid_position = find_missing_resid(path, file_name)
+    missing_resid_position = parse_info["Missing Residues"]
 
     for position in missing_resid_position:
         new_residue = Residue((' ', position, ' '), "GLY", '    ')
@@ -191,10 +261,13 @@ def get_contact_map(model, path, pdb_file, cutoff, contact=True):
     # We will only get training data for proteins with
     # a single chain.
     chain = list(model)[0]
-    residues = get_only_residues(chain)
+
+    parse_info = parse_pdb_file(path, pdb_file)
+
+    residues = get_only_residues(chain, parse_info["Mutated Residues"])
 
     # add in missing residues
-    residues = insert_missing_residues(residues, path, pdb_file)
+    residues = insert_missing_residues(residues, parse_info)
     dist_matrix = calc_dist_matrix(
         residues,
         residues
