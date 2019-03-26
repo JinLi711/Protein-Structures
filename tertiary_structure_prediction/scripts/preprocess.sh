@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Notes to self:
+# Ctrl + C to stop the program from running
+
+
 
 # the integer corresponds to the cull folder
 cullnum=1
@@ -12,16 +16,16 @@ cullnum=1
 # PDBID1,PDBID2,PDBID3
 # We need this text file for downloading PDB files
 # from the Protein Data Bank Website
-python ../preprocess/get_pdb_ids.py $cullnum
+# python ../preprocess/get_pdb_ids.py $cullnum
 
 
 # Move unwanted pdb files to another folder
-python ../preprocess/remove_unwanted_pdb_files.py $cullnum
+# python ../preprocess/remove_unwanted_pdb_files.py $cullnum
 
 
 # Write out a fasta file that contains only the
 # amino acid sequences that we want.
-python ../preprocess/get_wanted_fasta_seq.py $cullnum
+# python ../preprocess/get_wanted_fasta_seq.py $cullnum
 
 
 # write out contact maps
@@ -45,3 +49,5 @@ python ../preprocess/create_model_sets.py $cullnum
 # rm ../data/cull$cullnum/contact_map_matrices.npy
 # rm ../data/cull$cullnum/amino_acids.fasta
 # rm -r ../data/cull$cullnum/removed_pdb_files
+
+# create the model
