@@ -55,3 +55,24 @@ Some causes that I was able to figure out:
 Or I can parse MODRES in the PDB file.
 
 There may be others that I have not found out yet, but sure.
+
+# March 26, 2019
+
+Problem:
+
+```
+/Users/jinli/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/gradients_impl.py:112: UserWarning: Converting sparse IndexedSlices to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "Converting sparse IndexedSlices to a dense Tensor of unknown shape. "
+```
+
+Most likely cause:
+
+```
+tf.nn.embedding_lookup # which is like tf.gather
+```
+
+See this [StackOverFlow](https://stackoverflow.com/questions/35892412/tensorflow-dense-gradient-explanation#) post.
+
+This is just a warning, but when trying to run the model with 2 million parameters, the amount of memory used exploded. 
+
+I think I need to replace tf.nn.embedding_lookup with tf.dynamic_partition, but not so sure how I'm going to do that. I think it would be find just using a smaller model for now.
