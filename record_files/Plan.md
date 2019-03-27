@@ -12,7 +12,7 @@ ND - Decided not to do this
 |C         | 3/17/2019     | Find programs to help with protein modeling.
 |C         | 3/13/2019     | Gather PDB ids files for preliminary testing.
 |D         | NaN    | Add license.
-|D         | NaN    | Find final test set (from CASP or something)
+|C         | 3/27/2019     | Find final test set (from CASP or something)
 
 
 
@@ -40,7 +40,7 @@ ND - Decided not to do this
 |----------|---------------|-----
 |C         | 3/17/2019     | Parse through the culled files from Dunbrack's server to get only the PDB IDs seperated by commas.
 |C         | 3/26/2019     | Remove all PDB IDs that are known to have more than one chain.
-| NW | NAN| Download PDB files from RSCB server.
+|C         | 3/26/2019     | Download PDB files from RSCB server.
 |C         | 3/22/2019     | Move PDB files that we do not want to another folder.
 |C         | 3/22/2019     | Extract only the FASTA sequence that I need.
 |C         | 3/22/2019     | Align the PDB file sequence with FASTA sequence.
@@ -73,6 +73,8 @@ ND - Decided not to do this
 | C        | 3/25/2019     | Add in callbacks to the model.
 | C        | 3/25/2019     | Create plotting functions to plot the change in loss function.
 | C        | 3/26/2019     | Build the model as best as possible.
+| C        | 3/27/2019     |  Set up the training on Google Colab
+| C        | 3/27/2019     |  Create another iterator that produces batches instead of a single file.
 | D         | NAN     |  Make sure the model makes sense for a PDB file size of 2000.
 
 
@@ -95,7 +97,7 @@ ND - Decided not to do this
 
 | Progress | Date Finished | Task  
 |----------|---------------|-----
-| NW | NAN | Improve code documentations on preprocess files.
+| C        | 3/27/2019     | Improve code documentations on preprocess files.
 | NW | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt
 | NW | NAN | Create directory tree.
