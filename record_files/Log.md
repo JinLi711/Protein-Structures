@@ -76,3 +76,6 @@ See this [StackOverFlow](https://stackoverflow.com/questions/35892412/tensorflow
 This is just a warning, but when trying to run the model with 2 million parameters, the amount of memory used exploded. 
 
 I think I need to replace tf.nn.embedding_lookup with tf.dynamic_partition, but not so sure how I'm going to do that. I think it would be find just using a smaller model for now.
+
+Some possible suggestions to improve:
+* predict distance rather contact. Then when generating the 3D protein, convert the distance to a contact matrix.
