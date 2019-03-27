@@ -5,7 +5,7 @@
 
 
 # the integer corresponds to the cull folder
-cullnum=1
+cullnum=2
 # whether to run preprocess or not
 runpreprocess=true
 
@@ -20,7 +20,17 @@ if [ ! -d "cull$cullnum" ]; then
     mkdir "cull$cullnum"
 fi
 
-cd ../scripts
+cd "cull$cullnum"
+
+if [ ! -f "pdb_ids.dat" ]; then
+    touch "pdb_ids.dat"
+fi
+
+if [ ! -f "amino_acids.fasta" ]; then
+    touch "amino_acids.fasta"
+fi
+
+cd ../../scripts
 
 # In this directory, you only need to start with 2 files: 
 #   amino_acids.fasta
@@ -77,6 +87,7 @@ if [ "$runpreprocess" = true ]; then
 # Move unwanted pdb files to another folder
 # Conditions so far that warrant removal:
 #   multiple chains
+#   does not end in .pdb
 
 cd ../data/cull$cullnum
 
@@ -86,25 +97,25 @@ fi
 
 cd ../../scripts
 
-python ../preprocess/remove_unwanted_pdb_files.py $cullnum
+# python ../preprocess/remove_unwanted_pdb_files.py $cullnum
 
 
 # Write out a fasta file that contains only the
 # amino acid sequences that we want.
-python ../preprocess/get_wanted_fasta_seq.py $cullnum
+# python ../preprocess/get_wanted_fasta_seq.py $cullnum
 
 
 # write out contact maps
-python ../preprocess/get_contact_maps.py $cullnum
+# python ../preprocess/get_contact_maps.py $cullnum
 
 
 # using the wanted fasta file, write out the amino acid
 # sequence in 1 hot encoded form.
-python ../preprocess/fasta_to_1_hot_encodings.py $cullnum
+# python ../preprocess/fasta_to_1_hot_encodings.py $cullnum
 
 
 # Create train, validate, and development test set.
-python ../preprocess/create_model_sets.py $cullnum
+# python ../preprocess/create_model_sets.py $cullnum
 
 
 # remove intermediary files
