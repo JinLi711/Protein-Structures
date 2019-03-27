@@ -52,16 +52,17 @@ def find_ids_with_single_chain(pdb_ids):
     return one_chain_ids
 
 
-path = "../data/cull%i/" % int (sys.argv[1])
+if __name__ == "__main__":
+    path = "../data/cull%i/" % int (sys.argv[1])
 
-with open(path + "pdb_ids.dat") as f:
-    pdb_ids_with_chain = [line.split()[0] for line in f][1:] 
+    with open(path + "pdb_ids.dat") as f:
+        pdb_ids_with_chain = [line.split()[0] for line in f][1:] 
 
-pdb_ids = find_ids_with_single_chain(pdb_ids_with_chain) 
-pdb_ids = ','.join(pdb_ids)
+    pdb_ids = find_ids_with_single_chain(pdb_ids_with_chain) 
+    pdb_ids = ','.join(pdb_ids)
 
-pdb_ids_with_chain = ','.join(pdb_ids_with_chain)
+    pdb_ids_with_chain = ','.join(pdb_ids_with_chain)
 
-out_file = open(path + "pdb_ids.txt", 'w') 
-out_file.write(pdb_ids)
-out_file.close()
+    out_file = open(path + "pdb_ids.txt", 'w') 
+    out_file.write(pdb_ids)
+    out_file.close()

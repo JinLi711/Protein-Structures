@@ -1,6 +1,7 @@
 """
-Remove all mismatched input and output sizes.
 Create the train, validation, and development test sets.
+Do not include any mismatched input and output sizes.
+Record which PDB ID had mismatches.
 
 Note that the output is a dictionary mapping
 the PDB ID to the amino acid sequence and contact
@@ -97,11 +98,9 @@ def create_train_valid_devtest_sets(
     # matches that of c_maps.
 
     if (train_size + valid_size >= 1):
-        print(
-            """error[create_train_valid_devtest_sets]
-            (Train and validate proportion must be less than 1)
-            """)
-        return None
+        raise ValueError(
+            "Train and validate proportion must be less than 1"
+        )
 
     pdb_ids = list(aa.keys())
     shuffle(pdb_ids)
@@ -137,14 +136,15 @@ def create_train_valid_devtest_sets(
     np.save(directory + 'devtest_aa_dict.npy', devtest_aa_dict)
 
 
-path = "../data/cull%i/" % int (sys.argv[1])
-c_maps = np.load(path + 'contact_map_matrices.npy')[()]
-aa_1_hot = np.load(path + 'amino_acids_1_hot.npy')[()]
+if __name__ == "__main__":
+    path = "../data/cull%i/" % int (sys.argv[1])
+    c_maps = np.load(path + 'contact_map_matrices.npy')[()]
+    aa_1_hot = np.load(path + 'amino_acids_1_hot.npy')[()]
 
-aa_1_hot, c_maps = remove_mismatches(aa_1_hot, c_maps)
+    aa_1_hot, c_maps = remove_mismatches(aa_1_hot, c_maps)
 
-create_train_valid_devtest_sets(
-    aa_1_hot,
-    c_maps,
-    path
-)
+    create_train_valid_devtest_sets(
+        aa_1_hot,
+        c_maps,
+        path
+    )

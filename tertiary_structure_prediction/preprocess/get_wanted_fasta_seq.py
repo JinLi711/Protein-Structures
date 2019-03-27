@@ -1,6 +1,9 @@
 """
 Write out a fasta file that contains only the
 amino acid sequences that we want.
+
+Output file: 
+    wanted_aa.fasta
 """
 
 
@@ -24,7 +27,10 @@ def extract_wanted_fasta(path):
 
     :param path: path to the data
     :type  path: str
+    :returns: list of wanted amino acid sequences
+    :rtype:   list
     """
+    
     wanted_seq = []
     for seq_record in SeqIO.parse(path + "amino_acids.fasta", "fasta"):
         # remove the last letter, which describes the chain
@@ -36,5 +42,6 @@ def extract_wanted_fasta(path):
     return wanted_seq
 
 
-wanted_seq = extract_wanted_fasta(path)
-SeqIO.write(wanted_seq, path + "wanted_aa.fasta", "fasta")
+if __name__ == "__main__":
+    wanted_seq = extract_wanted_fasta(path)
+    SeqIO.write(wanted_seq, path + "wanted_aa.fasta", "fasta")

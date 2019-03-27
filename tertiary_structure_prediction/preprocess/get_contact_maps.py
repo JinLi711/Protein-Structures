@@ -1,7 +1,7 @@
 """
 Find the contact map matrixes.
-Need to insert filler residues to
-make sure the chain aligns correctly
+Need to insert filler residues to missing positions
+to make sure the chain aligns correctly
 with the FASTA sequence.
 """
 
@@ -14,9 +14,6 @@ from Bio.PDB.PDBParser import PDBParser
 import warnings
 warnings.filterwarnings("ignore")
 
-
-parser = PDBParser(PERMISSIVE=1)
-path = "../data/cull%i/" % int (sys.argv[1])
 
 def calc_residue_dist(residue_one, residue_two):
     """
@@ -72,7 +69,7 @@ def calc_dist_matrix(chain_one, chain_two):
     :type  chain_one: Bio.PDB.Chain.Chain
     :param chain_two: chain of amino acids
     :type  chain_two: Bio.PDB.Chain.Chain
-    :returns: matrix
+    :returns: distance matrix
     :rtype:   numpy array
     """
 
@@ -273,15 +270,19 @@ def get_contact_map(model, path, pdb_file, cutoff, contact=True):
         residues
     )
 
+    # Note that the return type is Bool, and not int
+    # Not sure if this matters.
     if contact:
         contact_map = dist_matrix < cutoff
     return contact_map
 
 
-def get_contact_maps(path, cutoff=12.0):
+def get_contact_maps(path, cutoff=8.0):
     """
     Create a dictionary mapping the PDB ID
     to its contact map.
+    
+    The author used a cutoff distance of 8.0 Angstrom.
 
     :param path: path to data
     :type  path: str
@@ -326,6 +327,8 @@ def get_contact_maps(path, cutoff=12.0):
 
     return contact_maps
 
-
-c_maps = get_contact_maps(path)
-np.save(path + 'contact_map_matrices.npy', c_maps)
+if __name__ == "__main__":
+    parser = PDBParser(PERMISSIVE=1)
+    path = "../data/cull%i/" % int (sys.argv[1])
+    c_maps = get_contact_maps(path)
+    np.save(path + 'contact_map_matrices.npy', c_maps)

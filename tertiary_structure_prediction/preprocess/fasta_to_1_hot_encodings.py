@@ -19,11 +19,15 @@ def convert_SeqRecord_to_1_hot(seqrecord):
     convert the amino acid into one hot encoding.
 
     Some sequences may include a character that is not an
-    amino acid.
+    typical amino acid.
+
     For example:
         B denotes Aspartate (D) or Asparagine (N)
         J denotes Leucine (L) or Isoleucine (I)
+        O denotes Pyrrolysine, encoded by a stop codon. 
+            Most similar to Lysine (K)
         X denotes "any"
+        U denotes Selenocysteine, most similar to Cysteine (C)
         Z denotes Glutamate (E) or Glutamine (Q)
         * denotes translation stop
         - denotes indeterminate length
@@ -44,6 +48,10 @@ def convert_SeqRecord_to_1_hot(seqrecord):
             new_seq.append(
                 random.choice(['D', 'N'])
             )
+        elif aa == 'O':
+            new_seq.append(
+                'K'
+            )
         elif aa == "J":
             new_seq.append(
                 random.choice(['L', 'I'])
@@ -53,6 +61,10 @@ def convert_SeqRecord_to_1_hot(seqrecord):
             # leucine, serine, lysine, and glutamic acid
             new_seq.append(
                 random.choice(['L', 'S', 'K', 'E'])
+            )
+        elif aa == 'U':
+            new_seq.append(
+                'C'
             )
         elif aa == "Z":
             new_seq.append(
@@ -90,16 +102,17 @@ def convert_fasta_to_1_hot(path):
     return one_hot_encodes
 
 
-# all_amino_acids = "ACDEFGHIKLMNPQRSTVWY"
-all_amino_acids = open("../preprocess/amino_acid_letters.txt", 'r')
-all_amino_acids = all_amino_acids.read()
-amino_acid_array = np.array(list(all_amino_acids)).reshape(-1, 1)
+if __name__ == "__main__":
+    # all_amino_acids = "ACDEFGHIKLMNPQRSTVWY"
+    all_amino_acids = open("../preprocess/amino_acid_letters.txt", 'r')
+    all_amino_acids = all_amino_acids.read()
+    amino_acid_array = np.array(list(all_amino_acids)).reshape(-1, 1)
 
-aa_enc = OneHotEncoder()
-aa_enc.fit(amino_acid_array)
-# to get the categories corresponding to each slot
-# aa_enc.categories_
+    aa_enc = OneHotEncoder()
+    aa_enc.fit(amino_acid_array)
+    # to get the categories corresponding to each slot
+    # aa_enc.categories_
 
-path = "../data/cull%i/" % int (sys.argv[1])
-one_hot_encodings = convert_fasta_to_1_hot(path)
-np.save(path + 'amino_acids_1_hot.npy', one_hot_encodings)
+    path = "../data/cull%i/" % int (sys.argv[1])
+    one_hot_encodings = convert_fasta_to_1_hot(path)
+    np.save(path + 'amino_acids_1_hot.npy', one_hot_encodings)
