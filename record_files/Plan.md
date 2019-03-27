@@ -30,6 +30,8 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 | NW | NAN| Find aggregate information on the PDB files / fasta sequences.
+| NW | NAN| Visualize contact maps.
+| NW | NAN| Tensorboard visualization.
 
 
 # Step 3: Preprocess
@@ -51,6 +53,7 @@ ND - Decided not to do this
 |C         | 3/25/2019     |  Check that the shapes of inputs and outputs match.
 |C         | 3/25/2019     | Remove all inputs/outputs from dataset where the shape doesn't match. Note that this should be the very last step; I want to remove as few as possible from this step. Count how many were removed (and which were removed).
 |C         | 3/26/2019     |  Edit bash script with more documentation and make sure everything flows nicely.
+|C         | 3/26/2019     |  Make sure everything runs for a PDB file size of 200.
 | NW | NAN| Create a preprocess output file that describes all relevant information.
 
 
@@ -70,6 +73,7 @@ ND - Decided not to do this
 | C        | 3/25/2019     | Add in callbacks to the model.
 | C        | 3/25/2019     | Create plotting functions to plot the change in loss function.
 | C        | 3/26/2019     | Build the model as best as possible.
+| D         | NAN     |  Make sure the model makes sense for a PDB file size of 2000.
 
 
 
@@ -80,11 +84,18 @@ ND - Decided not to do this
 | NW | NAN | Use the contact map to create a PDB file.
 
 
-# Step 6: Final Adjustments 
+# Step 6: Predictions
+
+| Progress | Date Finished | Task                  
+|----------|---------------|-----
+| NW | NAN | Make sure fasta_to_1_hot_encoding.py is able to take in a never before seem sequence.
+
+
+# Step 7: Final Adjustments 
 
 | Progress | Date Finished | Task  
 |----------|---------------|-----
-| NW | NAN | Improve code documentations.
+| NW | NAN | Improve code documentations on preprocess files.
 | NW | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt
 | NW | NAN | Create directory tree.
