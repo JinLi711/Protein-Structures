@@ -79,3 +79,14 @@ I think I need to replace tf.nn.embedding_lookup with tf.dynamic_partition, but 
 
 Some possible suggestions to improve:
 * predict distance rather contact. Then when generating the 3D protein, convert the distance to a contact matrix.
+
+
+# March 27, 2019
+
+Training on Google Colab has been super slow (like 4 hours for 1 epoch). Some possible fixes:
+* increase the batch size. The current batch size is 1, because I didn't think it mattered. Turns out it matters ALOT.
+* Fix the sparse IndexedSlices.
+
+Things I need to check / change before running the final model:
+* check the validation steps for fit_generator
+* check that the data path is correct (i.e the cull number)
