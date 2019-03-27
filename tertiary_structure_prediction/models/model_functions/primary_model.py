@@ -342,7 +342,7 @@ def inception_module (x):
 
 
 #----------------------------------------------------------------------
-# Generator
+# Generators
 #----------------------------------------------------------------------
 
 
@@ -380,6 +380,120 @@ def aa_generator(x, y):
             keys = set(x.keys())
 
 
+def aa_generator_batch(x, y, batch_size):
+    """
+    A generator for batches of sorted size.
+
+    :param x: dictionary mapping keys to aa 1 hot
+    :type  x: dict
+    :param y: dictionary mapping keys to cmaps
+    :type  y: dict
+    :param batch_size: size of batch
+    :type  batch_size: int
+    :returns: aa batch, cmap batch
+    :rtype:   (np.array, np.array)
+    """
+
+    aa = [(pdb_id, array) for (pdb_id, array) in x.items()]
+    aa.sort(
+        key=lambda x: x[1].shape[0],
+        reverse=True
+    )
+    cmaps = [(pdb_id, array) for (pdb_id, array) in y.items()]
+    cmaps.sort(
+        key=lambda x: x[1].shape[0],
+        reverse=True
+    )
+
+    def check_if_aligned(x, y):
+        """
+        Check if the sorting is aligned.
+
+        :param x: list of tuples (a, c)
+        :type  x: list
+        :param y: list of tuples (a, b)
+        :type  y: list
+        """
+
+        if len(x) != len(y):
+            raise ValueError("Lengths do not match.")
+
+        for i in range(len(x)):
+            if (x[i][0] != y[i][0]):
+                raise ValueError("Not sorted correctly")
+
+    check_if_aligned(aa, cmaps)
+
+    def create_batches(aa, cmaps, batch_size):
+        """
+        Create the batches.
+
+        :param aa: list of tuple (pdb_id, aa 1 hot)
+        :type  aa: list
+        :param cmaps: list of tuple (pdb_id, cmap)
+        :type  cmaps: list
+        :param batch_size: size of batch
+        :type  batch_size: int
+        :returns: dictionary mapping a key to a tuple
+                  (aa batch, cmap batch)
+        :rtype:   dict
+        """
+
+        all_batches = {}
+        for i in range(0, len(aa), batch_size):
+            aa_batch = aa[i:i+batch_size]
+            cmap_batch = cmaps[i:i+batch_size]
+            max_length = aa[i][1].shape[0]
+
+            aa_batch = [
+                np.pad(
+                    array,
+                    ((0, max_length - array.shape[0]),
+                     (0, 0)),
+                    'constant')
+                for (pdb_id, array) in aa_batch
+            ]
+
+            cmap_batch = [
+                np.pad(
+                    array,
+                    ((0, max_length - array.shape[0]),
+                     (0, max_length - array.shape[1])),
+                    'constant')
+                for (pdb_id, array) in cmap_batch
+            ]
+
+            cmap_batch = [
+                np.reshape(
+                    batch, batch.shape + (1,)) 
+                for batch in cmap_batch
+            ]
+            
+                
+            stacked_aa_batch = np.stack(aa_batch, axis=0)
+            stacked_cmap_batch = np.stack(cmap_batch, axis=0)
+
+            all_batches["batch" +
+                        str(i)] = (stacked_aa_batch, stacked_cmap_batch)
+
+        return all_batches
+
+    all_batches = create_batches(aa, cmaps, batch_size)
+    keys = set(all_batches.keys())
+
+    while True:
+        try:
+            key = random.sample(keys, 1)[0]
+            keys.remove(key)
+            aa_batch, cmap_batch = all_batches[key]
+
+            yield aa_batch, cmap_batch
+
+        except ValueError:
+            # if out of keys, reinsert back the keys
+            keys = set(all_batches.keys())
+
+            
 #----------------------------------------------------------------------
 # Create the model
 #----------------------------------------------------------------------
@@ -504,7 +618,7 @@ early = tf.keras.callbacks.EarlyStopping(
     verbose=2,
     # training is interrupted when the monitor argument 
     # stops improving after n steps
-    patience=5
+    patience=2
 )
 
 callbacks_list = [checkpoint, early, reduceLROnPlat]
@@ -540,7 +654,7 @@ if __name__ == "__main__":
         validation_data=aa_generator(valid_aa_dict, valid_cmap_dict),
         steps_per_epoch=len(train_aa_dict), 
         epochs=20,
-        validation_steps=10,
+        validation_steps=200, # number of batches to draw from valid set
         callbacks=callbacks_list
     )
 
