@@ -91,7 +91,7 @@ class OuterProduct(tf.keras.layers.Layer):
     for the i, j entry, we have (vi, v((i+j)/2), vj).
     """
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         super(OuterProduct, self).__init__()
 
     def call(self, incoming):
@@ -342,6 +342,27 @@ def inception_module (x):
 
 
 #----------------------------------------------------------------------
+# Functions Wrapped in Lambda Layers
+#----------------------------------------------------------------------
+
+
+def drop_last_dim(x):
+    """
+    Reshape a tensor of size (None, None, None, 1)
+    to (None, None, None)
+
+    :param x: input
+    :type  x: tensorflow tensor
+    :returns: reshaped input
+    :rtype:   tensorflow tensor
+    """
+
+    x_shape = tf.keras.backend.shape(x)
+    x_shape = x_shape[:-1]
+    return tf.keras.backend.reshape(x, x_shape)
+
+
+#----------------------------------------------------------------------
 # Generators
 #----------------------------------------------------------------------
 
@@ -373,6 +394,7 @@ def aa_generator(x, y):
             )
             cmap = y[key]
             cmap = np.reshape(cmap, (1,) + cmap.shape + (1,))
+            # cmap = np.reshape(cmap, (1,) + cmap.shape)
             yield one_hot_aa, cmap
 
         except ValueError:
@@ -493,7 +515,7 @@ def aa_generator_batch(x, y, batch_size):
             # if out of keys, reinsert back the keys
             keys = set(all_batches.keys())
 
-            
+
 #----------------------------------------------------------------------
 # Create the model
 #----------------------------------------------------------------------
@@ -546,10 +568,14 @@ def create_architecture(
         kernel_regularizer=tf.keras.regularizers.l2(0.001)
     )(x)
 
-#     x = tf.keras.layers.Dropout(
-#         0.5,
-#         name="Drop-Out"
-#     )(x)
+    # x = tf.keras.layers.Lambda(
+    #     lambda x: drop_last_dim(x)
+    # )(x)
+
+    # x = tf.keras.layers.Dropout(
+    #     0.5,
+    #     name="Drop-Out"
+    # )(x)
 
     model = tf.keras.models.Model(
         input_tensor,
