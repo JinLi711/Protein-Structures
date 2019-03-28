@@ -1,7 +1,7 @@
-C - Complete
-D - Doing
-NW - Not working on yet
-ND - Decided not to do this
+* C - Complete
+* D - Doing
+* NW - Not working on yet
+* ND - Decided not to do this
 
 
 # Step 1: Set Up
@@ -11,7 +11,7 @@ ND - Decided not to do this
 |C         | 2/23/2019     | Create all the starting files and directories.
 |C         | 3/17/2019     | Find programs to help with protein modeling.
 |C         | 3/13/2019     | Gather PDB ids files for preliminary testing.
-|D         | NaN    | Add license.
+|C         | 3/27/2019     | Add license.
 |C         | 3/27/2019     | Find final test set (from CASP or something)
 
 
@@ -30,7 +30,7 @@ ND - Decided not to do this
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
 | NW | NAN| Find aggregate information on the PDB files / fasta sequences.
-| NW | NAN| Visualize contact maps.
+| C        | 3/28/2019     | Visualize contact maps.
 | NW | NAN| Tensorboard visualization.
 
 
@@ -83,21 +83,22 @@ ND - Decided not to do this
 
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
-| NW | NAN | Use the contact map to create a PDB file.
+| C        | 3/27/2019     | Make sure fasta_to_1_hot_encoding.py is able to take in a never before seem sequence.
+| C        | 3/27/2019     | Set up a short pipeline so I can predict a new fasta sequence.
+| NW | NAN | Learn how to use CNS Solve.
+| NW | NAN | Since we do not have a model to predict secondary structures, we have to run our test amino acid sequences through another server to get more required information to create the tertiary structure in CNS Solve.
+| NW | NAN | Use the contact map to create PDB files of predictions.
+| NW | NAN | Use VMD to superimpose the actual protein structure and the predicted protein structure.
 
 
-# Step 6: Predictions
 
-| Progress | Date Finished | Task                  
-|----------|---------------|-----
-| NW | NAN | Make sure fasta_to_1_hot_encoding.py is able to take in a never before seem sequence.
-
-
-# Step 7: Final Adjustments 
+# Step 6: Final Adjustments 
 
 | Progress | Date Finished | Task  
 |----------|---------------|-----
 | C        | 3/27/2019     | Improve code documentations on preprocess files.
+| NW | NAN| Update the README.md file.
+| NW | NAN| Move all scrape work files to a scrape work folder.
 | NW | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt
 | NW | NAN | Create directory tree.
