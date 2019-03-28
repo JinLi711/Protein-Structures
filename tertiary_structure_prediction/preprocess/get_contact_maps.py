@@ -277,7 +277,7 @@ def get_contact_map(model, path, pdb_file, cutoff, contact=True):
     return contact_map
 
 
-def get_contact_maps(path, cutoff=8.0):
+def get_contact_maps(path, cutoff=8.0, train=True, verbose=True):
     """
     Create a dictionary mapping the PDB ID
     to its contact map.
@@ -288,6 +288,10 @@ def get_contact_maps(path, cutoff=8.0):
     :type  path: str
     :param cutoff: cutoff for contact distance
     :type  cutoff: float
+    :param train: train or not train
+    :type  train: bool
+    :param verbose: whether to print out statements
+    :type  verbose: bool
     :returns: dict mapping PDB file to contact matrix
     :rtype:   dict
     """
@@ -295,7 +299,11 @@ def get_contact_maps(path, cutoff=8.0):
     from os import listdir
     from os.path import isfile, join
 
-    mypath = path + 'pdb_files/'
+    if train:
+        mypath = path + 'pdb_files/'
+    else:
+        mypath = path 
+
     pdb_files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
     contact_maps = {}
@@ -306,10 +314,17 @@ def get_contact_maps(path, cutoff=8.0):
 
     for pdb_file in pdb_files:
         pdb_id = pdb_file.split('.')[0]
-        print("PDB File: ", pdb_file)
+
+        if verbose:
+            print("PDB File: ", pdb_file)
 
         structure_id = pdb_file.split('.')[0]
-        filename = path + "pdb_files/" + pdb_file
+
+        # if train:
+        filename = mypath + pdb_file
+        # else:
+        #     filename = path + pdb_file
+
         structure = parser.get_structure(structure_id, filename)
         model = structure[0]
 
@@ -327,8 +342,9 @@ def get_contact_maps(path, cutoff=8.0):
 
     return contact_maps
 
+parser = PDBParser(PERMISSIVE=1)
+
 if __name__ == "__main__":
-    parser = PDBParser(PERMISSIVE=1)
     path = "../data/cull%i/" % int (sys.argv[1])
     c_maps = get_contact_maps(path)
     np.save(path + 'contact_map_matrices.npy', c_maps)
