@@ -79,7 +79,33 @@ def convert_SeqRecord_to_1_hot(seqrecord):
     return seq_1_hot.toarray()
 
 
-def convert_fasta_to_1_hot(path):
+def sequences_to_dict(seq_gen):
+    """
+    Create a dictionary mapping the PDB ID to
+    the sequence.
+    This is an alternative to SeqIO.to_dict, which
+    can not handle duplicate keys.
+    This will only get the first key if there
+    are duplicate keys
+
+    :param: a generator for the fasta sequences
+    :type:  generator
+    :returns: dictionary mapping key to sequence
+    :rtype:   dict
+    """
+
+    dict1 = {}
+
+    for seq in seq_gen:
+        try:
+            dict1[seq.name] = seq
+        except ValueError:
+            pass
+
+    return dict1
+
+
+def convert_fasta_to_1_hot(path, train=True):
     """
     Given a fasta file, create a dictionary
     mapping PDB ID to its sequence in 1 hot encoded form.
@@ -91,28 +117,37 @@ def convert_fasta_to_1_hot(path):
     :rtype:   dict
     """
 
-    fasta_seq = SeqIO.to_dict(
-        SeqIO.parse(path + "wanted_aa.fasta", "fasta")
-    )
+    if train:
+        fasta_seq = SeqIO.to_dict(
+            SeqIO.parse(path + "wanted_aa.fasta", "fasta")
+        )
+    else:
+        seq_gen = SeqIO.parse(path, "fasta")
+        fasta_seq = sequences_to_dict(seq_gen)
 
     one_hot_encodes = {}
     for pdb_id, seqrecord in fasta_seq.items():
+        if not train:
+            # deal with annoying commas attached to the ID
+            pdb_id = pdb_id[:5]
+
         one_hot_enc = convert_SeqRecord_to_1_hot(seqrecord)
         one_hot_encodes[pdb_id] = one_hot_enc
     return one_hot_encodes
 
 
+all_amino_acids = "ACDEFGHIKLMNPQRSTVWY"
+amino_acid_array = np.array(list(all_amino_acids)).reshape(-1, 1)
+
+aa_enc = OneHotEncoder()
+aa_enc.fit(amino_acid_array)
+# to get the categories corresponding to each slot
+# aa_enc.categories_
+
+
 if __name__ == "__main__":
-    # all_amino_acids = "ACDEFGHIKLMNPQRSTVWY"
     all_amino_acids = open("../preprocess/amino_acid_letters.txt", 'r')
     all_amino_acids = all_amino_acids.read()
-    amino_acid_array = np.array(list(all_amino_acids)).reshape(-1, 1)
-
-    aa_enc = OneHotEncoder()
-    aa_enc.fit(amino_acid_array)
-    # to get the categories corresponding to each slot
-    # aa_enc.categories_
-
     path = "../data/cull%i/" % int (sys.argv[1])
     one_hot_encodings = convert_fasta_to_1_hot(path)
     np.save(path + 'amino_acids_1_hot.npy', one_hot_encodings)
