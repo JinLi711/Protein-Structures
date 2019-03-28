@@ -257,6 +257,15 @@ Read only abstract
 
 
 
+# Automated Procedure for Contact-Map-Based Protein Structure Reconstruction
+
+[LINK](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3983884/)
+
+2014
+
+
+
+
 
 
 # Soft computing methods for the prediction of protein tertiary structures: A survey
