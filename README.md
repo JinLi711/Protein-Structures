@@ -63,7 +63,7 @@ INSERT PICTURE HERE FROM TENSORBOARD
 
 NOTE THAT THIS IS THE PRELIMARY MODEL RESULTS (not trained on all the data, and for a small number of steps)
 
-![Predicted vs Actual Contact Map](visualization/test_visualization/plots/TR217cmap.png)
+![Predicted vs Actual Contact Map](tertiary_structure_prediction/visualization/test_visualization/plots/TR217cmap.png)
 
 INSERT HERE RESULTS FROM CNS SOLVE
 
