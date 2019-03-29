@@ -69,13 +69,15 @@
 | C        | 3/24/2019     | Create my own outer concatenation layer using Keras backend.
 | C        | 3/24/2019     | Create 1D and 2D residual network block.
 | C        | 3/24/2019     | Create an iterator to feed the neural net.
-|ND        | NaN           | Sort train set by amino acid sequence length.
+| C        | 3/28/2019     | Sort train set by amino acid sequence length.
 | C        | 3/25/2019     | Add in callbacks to the model.
 | C        | 3/25/2019     | Create plotting functions to plot the change in loss function.
 | C        | 3/26/2019     | Build the model as best as possible.
 | C        | 3/27/2019     |  Set up the training on Google Colab
 | C        | 3/27/2019     |  Create another iterator that produces batches instead of a single file.
 | C        | 3/28/2019     | Create another Outer Product layer.
+| C        | 3/28/2019     | Change the sparse cross entropy to binary cross entropy and change the generator accordingly.
+| C        | 3/29/2019     | Implement weighing for a 3 tensor output (implement in generator).
 | D         | NAN     |  Make sure the model makes sense for a PDB file size of 2000.
 
 
@@ -86,9 +88,10 @@
 |----------|---------------|-----
 | C        | 3/27/2019     | Make sure fasta_to_1_hot_encoding.py is able to take in a never before seem sequence.
 | C        | 3/27/2019     | Set up a short pipeline so I can predict a new fasta sequence.
-| NW | NAN | Learn how to use CNS Solve.
+| ND | NAN | Learn how to use CNS Solve.
 | NW | NAN | Since we do not have a model to predict secondary structures, we have to run our test amino acid sequences through another server to get more required information to create the tertiary structure in CNS Solve.
-| NW | NAN | Use the contact map to create PDB files of predictions.
+| NW | NAN | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
+| NW | NAN | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
 | NW | NAN | Use VMD to superimpose the actual protein structure and the predicted protein structure.
 
 
