@@ -75,6 +75,7 @@
 | C        | 3/26/2019     | Build the model as best as possible.
 | C        | 3/27/2019     |  Set up the training on Google Colab
 | C        | 3/27/2019     |  Create another iterator that produces batches instead of a single file.
+| C        | 3/28/2019     | Create another Outer Product layer.
 | D         | NAN     |  Make sure the model makes sense for a PDB file size of 2000.
 
 
