@@ -68,6 +68,7 @@ Things that I did not implement, even though I wish I did:
     did not have 60 layers for second residual network. 
     (Too many parameters, memory exploded, not sure 
     how to deal with this yet).
+    Created my own Outer Product layer
 """
 
 
@@ -597,6 +598,14 @@ def create_architecture(
     )
 
     x = OuterProduct2(
+    )(x)
+
+    x = tf.keras.layers.Conv2D(
+        60,
+        1,
+        activation='relu',
+        padding='same',
+        kernel_regularizer=tf.keras.regularizers.l2(0.001)
     )(x)
 
     x = residual_conv_block(
