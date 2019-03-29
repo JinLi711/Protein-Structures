@@ -94,3 +94,12 @@ Things I need to check / change before running the final model:
 # March 28, 2019
 
 Couldn't fix the exploding memory problem, so I created another OuterProduct layer. Not sure if this is going to be better.
+
+Ok, and another part causing out of memory is just the sheer size of the neural net. For example, if we feed in a batch of amino acids of size 400, batch size of 15, we have a size of 15 * 400 * 400 * 60 = 144000000, which is huge. And that's just for one layer (there are 60 of these layers in just the second residual network). I have no clue how the paper was able to pull off such a huge model training. But for my case, I will have to tone down the size of the model.
+
+This seemed to do the trick.
+
+```
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+```
