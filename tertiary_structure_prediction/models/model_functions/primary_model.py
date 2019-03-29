@@ -692,7 +692,7 @@ early = tf.keras.callbacks.EarlyStopping(
     verbose=2,
     # training is interrupted when the monitor argument 
     # stops improving after n steps
-    patience=7
+    patience=15
 )
 
 callbacks_list = [checkpoint, early, reduceLROnPlat]
