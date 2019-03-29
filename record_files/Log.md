@@ -90,3 +90,7 @@ Training on Google Colab has been super slow (like 4 hours for 1 epoch). Some po
 Things I need to check / change before running the final model:
 * check the validation steps for fit_generator
 * check that the data path is correct (i.e the cull number)
+
+# March 28, 2019
+
+Couldn't fix the exploding memory problem, so I created another OuterProduct layer. Not sure if this is going to be better.
