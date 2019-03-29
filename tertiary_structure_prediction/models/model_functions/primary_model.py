@@ -600,13 +600,13 @@ def create_architecture(
     x = OuterProduct2(
     )(x)
 
-    x = tf.keras.layers.Conv2D(
-        60,
-        1,
-        activation='relu',
-        padding='same',
-        kernel_regularizer=tf.keras.regularizers.l2(0.001)
-    )(x)
+    # x = tf.keras.layers.Conv2D(
+    #     60,
+    #     1,
+    #     activation='relu',
+    #     padding='same',
+    #     kernel_regularizer=tf.keras.regularizers.l2(0.001)
+    # )(x)
 
     x = residual_conv_block(
         x,
@@ -667,7 +667,7 @@ checkpoint = tf.keras.callbacks.ModelCheckpoint(
 reduceLROnPlat = tf.keras.callbacks.ReduceLROnPlateau(
     monitor='val_loss',
     factor=0.2,
-    patience=1,
+    patience=2,
     verbose=1,
     mode='min',
     min_delta=0.0001,
@@ -700,7 +700,7 @@ early = tf.keras.callbacks.EarlyStopping(
     verbose=2,
     # training is interrupted when the monitor argument 
     # stops improving after n steps
-    patience=2
+    patience=7
 )
 
 callbacks_list = [checkpoint, early, reduceLROnPlat]
