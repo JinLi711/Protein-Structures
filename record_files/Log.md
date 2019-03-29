@@ -103,3 +103,21 @@ This seemed to do the trick.
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 ```
+
+
+# March 29, 2019
+
+Another problem encountered: training seems to result in the optimal prediction of no contact for every residue, which is bad. Possible causes:
+* unbalanced outputs (alot more no contacts than contacts)
+  * will solve this by increasing class weight for contact
+* noisy data
+
+Possible solutions:
+* increase dataset size
+* decrease fully connected layers
+* increase number of epochs
+* implement more regularizers
+* make sure there's correct normalizations going on
+
+
+Job for secondary structure prediction [here](http://raptorx.uchicago.edu/StructurePropertyPred/status/89121447/)
