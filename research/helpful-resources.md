@@ -38,13 +38,22 @@ Here are all the helpful resources that I have looked through to make this proje
 
 
 
+
+# Biology Web Servers For Predictions
+
+* [RaptorX](http://raptorx.uchicago.edu/)
+    * predict protein structures and functions
+
+* [JPred 4](http://www.compbio.dundee.ac.uk/jpred/)
+    * predicts secondary structure from PDB sequence
+
+* [CONFOLD](http://protein.rnet.missouri.edu/confold/)
+    * predict protein coordinates with contact map, amino acid sequence, and secondary structure
+
 # Programs
 
 * [CNS Solve](http://cns-online.org/v1.3/)
     * used to determine macromolecular structure
-
-* [RaptorX](http://raptorx.uchicago.edu/)
-    * predict protein structures and functions
 
 * [VMD](https://www.ks.uiuc.edu/Research/vmd/)
     * for visualizing molecules
@@ -55,9 +64,6 @@ Here are all the helpful resources that I have looked through to make this proje
 * [DSSP](https://swift.cmbi.umcn.nl/gv/dssp/)
     * Finds secondary structure of existing PDB files
     * does not do any prediction
-
-* [JPred 4](http://www.compbio.dundee.ac.uk/jpred/)
-    * predicts secondary structure from PDB sequence
 
 * [PyMol](https://pymol.org/2/)
     * for visualizing molecules 
