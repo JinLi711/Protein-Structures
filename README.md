@@ -2,7 +2,7 @@
 
 The basic objective of this repository is to predict the contact map given a sequence of amino acids.
 
-
+ALMOST THERE!
 
 
 
