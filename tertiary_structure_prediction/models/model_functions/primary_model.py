@@ -523,6 +523,7 @@ def aa_generator_batch(x, y, batch_size=1):
 
     all_batches = create_batches(aa, cmaps, batch_size)
     keys = set(all_batches.keys())
+    
 
     while True:
         try:
@@ -530,7 +531,18 @@ def aa_generator_batch(x, y, batch_size=1):
             keys.remove(key)
             aa_batch, cmap_batch = all_batches[key]
 
-            yield aa_batch, cmap_batch
+
+            class_weight = np.zeros(
+                cmap_batch.shape
+            )
+
+            class_weight += cmap_batch * 8
+            class_weight[class_weight == 0] = 1
+            class_weight = class_weight.reshape(
+                (class_weight.shape[:2])
+            )
+
+            yield aa_batch, cmap_batch, class_weight
 
         except ValueError:
             # if out of keys, reinsert back the keys
@@ -652,9 +664,9 @@ checkpoint = tf.keras.callbacks.ModelCheckpoint(
     save_weights_only=True
 )
 
-# tensorboard = tf.keras.callback.TensorBoard(
-#     log_dir='Logs',
-# )
+tensorboard = tf.keras.callbacks.TensorBoard(
+    log_dir='Logs',
+)
 
 reduceLROnPlat = tf.keras.callbacks.ReduceLROnPlateau(
     monitor='val_loss',
@@ -695,7 +707,12 @@ early = tf.keras.callbacks.EarlyStopping(
     patience=15
 )
 
-callbacks_list = [checkpoint, early, reduceLROnPlat]
+callbacks_list = [
+    checkpoint, 
+    early, 
+    reduceLROnPlat,
+    tensorboard
+]
 
 
 
@@ -740,10 +757,17 @@ if __name__ == "__main__":
         steps_per_epoch=train_steps,
         epochs=epochs,
         validation_steps=valid_steps,
-        callbacks=callbacks_list
+        callbacks=callbacks_list,
     )
 
     model.save('my_model.h5') 
 
     # to load back the model:
     # model = tf.keras.models.load_model('my_model.h5')
+
+    # note: make sure the versions are correct
+    # if the model is saved from tensorflow 1.12.0,
+    # it should not be loaded into a python program
+    # using tensorflow 1.13.0
+
+    # need to also call the custom layers when loading
