@@ -131,6 +131,53 @@ class OuterProduct(tf.keras.layers.Layer):
         return output
 
 
+class OuterProduct2(tf.keras.layers.Layer):
+    """
+    Given a layer of size (B, L, N), create 
+    a layer of size (B, L, L, N).
+
+    This is done by:
+        switching B and L : (L, B, N)
+        extending the dimension: (1, L, B, N)
+        getting some random index: (L, 1)
+        computing tensorproduct: (L, 1) x (1, L, B, N)
+    """
+
+    def __init__(self, **kwargs):
+        super(OuterProduct2, self).__init__()
+
+    def call(self, incoming):
+        """
+        Create the layer.
+
+        :param incoming: tensor of size (B, L, N)
+        :type  incoming: tensorflow.python.framework.ops.Tensor
+        :returns: tensor of size (B, L, L, N)
+        :rtype:   tensorflow.python.framework.ops.Tensor
+        """
+
+        # switch batch dim with L dim to put L at first
+        incoming2 = tf.transpose(incoming, perm=[1, 0, 2])
+
+        # get a random index value at tensor index 2 and 3
+        L2 = tf.shape(incoming2)[1]
+        L3 = tf.shape(incoming2)[2]
+        index2 = tf.random.uniform((1,), dtype="int32", maxval=(L2))[0]
+        index3 = tf.random.uniform((1,), dtype="int32", maxval=(L3))[0]
+
+        # compute the tensor product
+        inputa = tf.expand_dims(incoming2[:, index2][:, index3], 1)
+        incoming3 = tf.expand_dims(incoming2, 0)
+        tensorproduct = tf.tensordot(inputa, incoming3, axes=1)
+        tensorproduct = tf.transpose(
+            tensorproduct,
+            perm=[2, 0, 1, 3],
+            name="outer_product2"
+        )
+
+        return tensorproduct
+
+
 def residual_conv_block(
         x,
         convnet,
@@ -549,7 +596,7 @@ def create_architecture(
         regularizer=tf.keras.regularizers.l2(0.001)
     )
 
-    x = OuterProduct(
+    x = OuterProduct2(
     )(x)
 
     x = residual_conv_block(
