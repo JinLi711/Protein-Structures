@@ -415,42 +415,7 @@ def drop_last_dim(x):
 #----------------------------------------------------------------------
 
 
-def aa_generator(x, y):
-    """
-    Generator for feeding a single instance of an 
-    input and an output.
-    The generator is reset when all elements are used.
-
-    :param: input
-    :type:  dict
-    :param: label
-    :type:  dict
-    :returns: a single instance of input and label
-    :rtype:   (numpy array, numpy array)
-    """
-
-    keys = set(x.keys())
-
-    while True:
-        try:
-            key = random.sample(keys, 1)[0]
-            keys.remove(key)
-
-            one_hot_aa = x[key]
-            one_hot_aa = np.reshape(
-                one_hot_aa, (1,) + one_hot_aa.shape
-            )
-            cmap = y[key]
-            cmap = np.reshape(cmap, (1,) + cmap.shape + (1,))
-            # cmap = np.reshape(cmap, (1,) + cmap.shape)
-            yield one_hot_aa, cmap
-
-        except ValueError:
-            # if out of keys, reinsert back the keys
-            keys = set(x.keys())
-
-
-def aa_generator_batch(x, y, batch_size):
+def aa_generator_batch(x, y, batch_size=1):
     """
     A generator for batches of sorted size.
 
@@ -533,9 +498,17 @@ def aa_generator_batch(x, y, batch_size):
                 for (pdb_id, array) in cmap_batch
             ]
 
+            # example:
+            # shape of (4,5,6) becomes (4,30)
+            # equivalent to tf.flatten
             cmap_batch = [
-                np.reshape(
-                    batch, batch.shape + (1,)) 
+                batch.flatten()
+                for batch in cmap_batch
+            ]  
+
+            # shape of (4,30) becomes (4,30,1)
+            cmap_batch = [
+                np.expand_dims(batch, axis=2)
                 for batch in cmap_batch
             ]
             
@@ -617,11 +590,30 @@ def create_architecture(
     )
 
     x = tf.keras.layers.Conv2D(
-        2,
+        1,
         1,
         activation='relu',
         padding='same',
         kernel_regularizer=tf.keras.regularizers.l2(0.001)
+    )(x)
+
+    x = tf.keras.layers.BatchNormalization(
+    )(x)
+
+    x = tf.keras.layers.Flatten(
+    )(x)
+
+    # x = tf.expand_dims(
+    #     x,
+    #     axis=2
+    # )
+
+    x = tf.keras.layers.Lambda(
+        lambda x: tf.expand_dims(x, axis=2)
+    )(x)
+
+    x = tf.keras.layers.Activation(
+        activation="sigmoid"
     )(x)
 
     # x = tf.keras.layers.Lambda(
@@ -724,19 +716,30 @@ if __name__ == "__main__":
     model = create_architecture(3, 60)
     print (model.summary())
 
+    batch_size = 1
+    epochs=20
+    train_steps = round(len(train_aa_dict) / batch_size)
+    valid_steps = round(len(valid_aa_dict) / batch_size)
+
     model.compile(
         optimizer="adam",
-        loss="sparse_categorical_crossentropy",
+        loss="binary_crossentropy",
         sample_weight_mode="temporal",
         metrics=['accuracy']
     )
 
     history = model.fit_generator(
-        aa_generator(train_aa_dict, train_cmap_dict),
-        validation_data=aa_generator(valid_aa_dict, valid_cmap_dict),
-        steps_per_epoch=len(train_aa_dict), 
-        epochs=20,
-        validation_steps=200, # number of batches to draw from valid set
+        aa_generator_batch(
+            train_aa_dict, 
+            train_cmap_dict, 
+            batch_size),
+        validation_data=aa_generator_batch(
+            valid_aa_dict, 
+            valid_cmap_dict, 
+            batch_size),
+        steps_per_epoch=train_steps,
+        epochs=epochs,
+        validation_steps=valid_steps,
         callbacks=callbacks_list
     )
 
