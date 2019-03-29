@@ -64,6 +64,11 @@ if __name__ == "__main__":
     import fasta_to_1_hot_encodings as fthe
     import get_contact_maps as gcm
 
+    model = tf.keras.models.load_model(
+        model_path_cull + 'my_model.h5',
+        custom_objects={"OuterProduct2": pm.OuterProduct2()}
+    )
+
     fasta_seq_path = test_path + "casp11.fasta"
     pdb_path = test_path + "casp11.targets_refine/"
 
@@ -77,9 +82,5 @@ if __name__ == "__main__":
         train=False
     )
 
-    model = tf.keras.models.load_model(
-        model_path_cull + 'my_model.h5',
-        custom_objects={"OuterProduct": pm.OuterProduct}
-    )
 
     plot_contact_maps(model, fasta_seqs, c_maps)
