@@ -60,15 +60,15 @@ Others:
 
 
 Things that I did not implement, even though I wish I did:
-    the extra six dimensions added to input
-    pairwise features
-    different layer sizes in residual network
-    used sparse categorical crossentropy instead of log
-    no weighing of outputs
-    did not have 60 layers for second residual network. 
+    * the extra six dimensions added to input
+    * pairwise features
+    * different layer sizes in residual network
+    used binary crossentropy instead of log
+    * my weighing was simply 8 times higher for contact than
+    noncontact
+    * did not have 60 layers for second residual network. 
     (Too many parameters, memory exploded, not sure 
     how to deal with this yet).
-    Created my own Outer Product layer
 """
 
 

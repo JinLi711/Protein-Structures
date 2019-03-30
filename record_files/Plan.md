@@ -29,9 +29,9 @@
 
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
-| NW | NAN| Find aggregate information on the PDB files / fasta sequences.
+| ND | NAN| Find aggregate information on the PDB files / fasta sequences.
 | C        | 3/28/2019     | Visualize contact maps.
-| NW | NAN| Tensorboard visualization.
+| C        | 3/30/2019     | Tensorboard visualization. Just create an image of the entire model.
 
 
 # Step 3: Preprocess
@@ -54,7 +54,7 @@
 |C         | 3/25/2019     | Remove all inputs/outputs from dataset where the shape doesn't match. Note that this should be the very last step; I want to remove as few as possible from this step. Count how many were removed (and which were removed).
 |C         | 3/26/2019     |  Edit bash script with more documentation and make sure everything flows nicely.
 |C         | 3/26/2019     |  Make sure everything runs for a PDB file size of 200.
-| NW | NAN| Create a preprocess output file that describes all relevant information.
+|ND | NAN| Create a preprocess output file that describes all relevant information.
 
 
 
@@ -78,7 +78,7 @@
 | C        | 3/28/2019     | Create another Outer Product layer.
 | C        | 3/28/2019     | Change the sparse cross entropy to binary cross entropy and change the generator accordingly.
 | C        | 3/29/2019     | Implement weighing for a 3 tensor output (implement in generator).
-| D         | NAN     |  Make sure the model makes sense for a PDB file size of 2000.
+| C        | 3/30/2019     |  Make sure the model makes sense for a PDB file size of 2000.
 
 
 
@@ -90,7 +90,7 @@
 | C        | 3/27/2019     | Set up a short pipeline so I can predict a new fasta sequence.
 | ND | NAN | Learn how to use CNS Solve.
 | NW | NAN | Since we do not have a model to predict secondary structures, we have to run our test amino acid sequences through another server to get more required information to create the tertiary structure in CNS Solve.
-| NW | NAN | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
+| C        | 3/29/2019     | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
 | NW | NAN | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
 | NW | NAN | Use VMD to superimpose the actual protein structure and the predicted protein structure.
 
@@ -102,6 +102,7 @@
 |----------|---------------|-----
 | C        | 3/27/2019     | Improve code documentations on preprocess files.
 | NW | NAN| Update the README.md file.
+| NW | NAN| Go through all my scrape work to see what I forgot to describe.
 | NW | NAN| Move all scrape work files to a scrape work folder.
 | NW | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt

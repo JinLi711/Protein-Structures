@@ -35,13 +35,15 @@ def plot_contact_maps(model, fasta_seqs, c_maps, save_dir="plots/"):
         one_hot = one_hot.reshape((1,) + one_hot.shape)
         c_map_pred = model.predict(one_hot)
 
-        c_map_pred = c_map_pred.reshape(c_map_pred.shape[1:])
+        length = one_hot.shape[1]
+
+        c_map_pred = c_map_pred.reshape((length, length))
         fig = plt.figure(figsize=(20, 10))
         fig.suptitle("PDB ID: " + pdb_id)
 
         ax1 = plt.subplot(221)
         ax1.set_title("Predicted: ")
-        plt.imshow(c_map_pred[:, :, 0] > 0.5)
+        plt.imshow(c_map_pred > 0.5)
 
         ax2 = plt.subplot(222)
         ax2.set_title("Actual: ")
@@ -66,7 +68,7 @@ if __name__ == "__main__":
 
     model = tf.keras.models.load_model(
         model_path_cull + 'my_model.h5',
-        custom_objects={"OuterProduct2": pm.OuterProduct2()}
+        custom_objects={"OuterProduct": pm.OuterProduct()}
     )
 
     fasta_seq_path = test_path + "casp11.fasta"

@@ -5,7 +5,7 @@
 
 
 # the integer corresponds to the cull folder
-cullnum=2
+cullnum=3
 # whether to run preprocess or not
 runpreprocess=true
 
@@ -115,7 +115,7 @@ cd ../../scripts
 
 
 # Create train, validate, and development test set.
-# python ../preprocess/create_model_sets.py $cullnum
+python ../preprocess/create_model_sets.py $cullnum
 
 
 # remove intermediary files
@@ -127,8 +127,6 @@ cd ../../scripts
 
 # rm ../data/cull$cullnum/amino_acids.fasta
 # rm -r ../data/cull$cullnum/removed_pdb_files
-
-# create the model
 
 fi
 

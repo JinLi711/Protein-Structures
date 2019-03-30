@@ -121,3 +121,9 @@ Possible solutions:
 
 
 Job for secondary structure prediction [here](http://raptorx.uchicago.edu/StructurePropertyPred/status/89121447/)
+
+THINGS FINALLY WORKED!!! :smile: :smile: :smile: 
+
+Bit annoying: Confold Server only takes in proteins of max length 500.
+
+Just remember to upload the data for final training.

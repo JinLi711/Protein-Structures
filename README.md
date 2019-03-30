@@ -52,7 +52,7 @@ This repository contains a deep neural network composed of two residual networks
 
 ### Neural Network Set Up
 
-This is the deep neural network that I built:
+This is the deep neural network that I tried to build:
 
 ![2017 Deep Residual Network](https://github.com/JinLi711/Protein-Structures/blob/master/research/images/journal.pcbi.1005324.g001.PNG)
 
@@ -96,6 +96,6 @@ The model is mostly based off this paper:
 However, they did not provide any code, so this repository tries to replicate the described model as closely as possible.
 
 Some major differences between this model and the model from the paper:
-* I did not include pairwise features, predicted secondary structure, predicted solvent accessibility as inputs
-* I did not weigh the outputs differently (the paper had higher weights for contacts than non-contacts)
-* I used sparse categorical crossentropy instead of average log.
+* I did not include pairwise features, predicted secondary structure, predicted solvent accessibility as inputs (all these features individual require an entirely different project in itself)
+* I used binary crossentropy instead of average log.
+* The second residual network is only 14 layers rather than 60 because I came across out of memory issues on Google Colab.
