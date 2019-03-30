@@ -52,7 +52,11 @@ This repository contains a deep neural network composed of two residual networks
 
 ### Neural Network Set Up
 
-INSERT PICTURE HERE FROM TENSORBOARD
+This is the deep neural network that I built:
+
+![2017 Deep Residual Network](https://github.com/JinLi711/Protein-Structures/blob/master/research/images/journal.pcbi.1005324.g001.PNG)
+
+[Here](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/graph_run%3D.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see Acknowledgements)
 
 
 
