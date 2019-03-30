@@ -56,7 +56,10 @@ This is the deep neural network that I tried to build:
 
 ![2017 Deep Residual Network](https://github.com/JinLi711/Protein-Structures/blob/master/research/images/journal.pcbi.1005324.g001.PNG)
 
-[Here](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/graph_run%3D.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see Acknowledgements)
+Note that `L` is the sequence length, which can be arbitrary, and `n` is the number of features learned from the convnet.
+
+
+[Here](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/graph_run%3D.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see [Acknowledgements](https://github.com/JinLi711/Protein-Structures#acknowledgements)).
 
 
 
@@ -74,6 +77,7 @@ INSERT HERE RESULTS FROM CNS SOLVE
 
 
 
+
 ## Future Steps
 
 * Learn about the existing evaluation metrics for predicting protein structures and compare my model with existing models.
@@ -85,6 +89,17 @@ INSERT HERE RESULTS FROM CNS SOLVE
 * Predict torsion angles using the amino acid sequence.
 
 * Train multiple models with different parameters and compare.
+
+
+
+
+## Extra Notes 
+
+* All the python notebooks are scrap work for testing purposes. The cleaned code is in the scripts.
+
+
+
+
 
 
 ## Acknowledgements
