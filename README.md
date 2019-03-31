@@ -92,7 +92,7 @@ And here's the aligned 3D structure of the predicted and target:
 
 <p align="center">
 
-<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="400" height="400"/>
+<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="300" height="300"/>
 
 </p>
 
