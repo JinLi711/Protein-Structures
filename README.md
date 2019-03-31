@@ -75,7 +75,7 @@ NOTE THAT THIS IS THE PRELIMARY MODEL RESULTS (not trained on all the data, and 
 INSERT HERE RESULTS FROM CNS SOLVE
 
 
-<img src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="400" height="400", class="center">
+<img src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="400" height="400", align="middle">
 
 
 ## Future Steps
