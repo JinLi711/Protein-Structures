@@ -19,7 +19,7 @@ The Nobel Prize winning experiment, the Anfinsen experiment, showed that the sha
 
 ## Method
 
-Although there are many methods for determining the shape of a protein just from its amino acid, this repository will mainly focus on predicting the contact map from the starting amino acid sequence. A contact map for an amino acid sequence of length L is simply a matrix of size L x L, where each position i,j is either 1 if residue i, j are close together (they are in contact), or 0 if they are not. The contact map, along with the predicted secondary structure, is enough to predict the coordinate positions of each residue.
+Although there are many methods for determining the shape of a protein just from its amino acid, this repository will mainly focus on predicting the contact map from the starting amino acid sequence. A contact map for an amino acid sequence of length L is simply a matrix of size L x L, where each position i,j is either 1 if residue i, j are close together (they are in contact), or 0 if they are not. The contact map, along with the predicted secondary structure and amino acid sequence, is enough to predict the coordinate positions of each residue.
 
 This repository contains a deep neural network composed of two residual networks. The amino acid sequence is feed into the first residual network, which is a series of residual 1 dimensional convolution layers. This network is then connected to a residual 2 dimensional network, and outputs the predicted contact map.
 
@@ -69,7 +69,7 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 
 1. After training the model to predict the contact map, feed the amino acid sequence to RaptorX to generate the protein's secondary structure. 
 
-2. The contact map and secondary structure is then fed into the Confold server, where it generates the predicted PDB file.
+2. The contact map, secondary structure, and amino acid sequence is then fed into the Confold server, where it generates the predicted PDB file.
 
 3. Use RCSB PDB Protein Comparison Tool to align the predicted 3D structure with the actual 3D structure.
 
@@ -80,7 +80,7 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 
 ## Results
 
-I randomly chose a protein from the CASP11 and ran it through the model to reconstruct the 3D structure.
+I randomly chose a protein from the CASP11 (TR823) and ran it through the model to reconstruct the 3D structure.
 
 
 Here's the contact map prediction: (yellow is contact, purple is no contact, the axis describes the position of amino acids):
@@ -98,7 +98,7 @@ And here's the aligned 3D structure of the predicted and target:
 
 The white and cyan area denotes the predicted 3D structure, the gray and orange area represents the actual 3D structure. The orange and cyan area is where there's notable alignment.
 
-The proteins didn't align well, indicating that the model still needs fine tuning and training on the full dataset.
+**The proteins didn't align well, indicating that the model still needs fine tuning and training on the full dataset.**
 
 
 
