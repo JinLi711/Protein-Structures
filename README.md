@@ -65,26 +65,40 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 
 
 
+### From Contact Map to 3D Structure
+
+1. After training the model to predict the contact map, feed the amino acid sequence to RaptorX to generate the protein's secondary structure. 
+
+2. The contact map and secondary structure is then fed into the Confold server, where it generates the predicted PDB file.
+
+3. Use RCSB PDB Protein Comparison Tool to align the predicted 3D structure with the actual 3D structure.
+
+
+
+
+
 
 ## Results
 
-NOTE THAT THIS IS THE PRELIMARY MODEL RESULTS (not trained on all the data, and for a small number of steps)
-
-![Predicted vs Actual Contact Map](tertiary_structure_prediction/visualization/test_visualization/plots/TR217cmap.png)
-
-INSERT HERE RESULTS FROM CNS SOLVE
+I randomly chose a protein from the CASP11 and ran it through the model to reconstruct the 3D structure.
 
 
-<img src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/TR823cmap.png" alt="Alignment" width="300" height="300">
+Here's the contact map prediction: (yellow is contact, purple is no contact, the axis describes the position of amino acids):
 
 ![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/TR823cmap.png)
 
+
+And here's the aligned 3D structure:
 
 <p class="aligncenter">
 
 <img src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="400" height="400">
 
 </p>
+
+The white and cyan area denotes the predicted 3D structure, the gray and orange area represents the actual 3D structure. The orange and cyan area is where there's notable alignment.
+
+The proteins didn't align well, indicating that the model still needs fine tuning and training on the full dataset.
 
 
 ## Future Steps
