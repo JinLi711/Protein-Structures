@@ -77,7 +77,7 @@ INSERT HERE RESULTS FROM CNS SOLVE
 
 <img src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/TR823cmap.png" alt="Alignment" width="300" height="300">
 
-
+![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/TR823cmap.png)
 
 
 <p class="aligncenter">
