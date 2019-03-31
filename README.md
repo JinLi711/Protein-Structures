@@ -90,9 +90,9 @@ Here's the contact map prediction: (yellow is contact, purple is no contact, the
 
 And here's the aligned 3D structure:
 
-<p class="aligncenter">
+<p align="center">
 
-<img src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="400" height="400">
+<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="400" height="400"/>
 
 </p>
 
