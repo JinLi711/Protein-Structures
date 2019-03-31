@@ -91,8 +91,8 @@
 | ND | NAN | Learn how to use CNS Solve.
 | NW | NAN | Since we do not have a model to predict secondary structures, we have to run our test amino acid sequences through another server to get more required information to create the tertiary structure in CNS Solve.
 | C        | 3/29/2019     | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
-| NW | NAN | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
-| NW | NAN | Use VMD to superimpose the actual protein structure and the predicted protein structure.
+| C        | 3/30/2019     | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
+| C        | 3/30/2019     | Use RSCB alignment tool to superimpose the actual protein structure and the predicted protein structure.
 
 
 
@@ -101,9 +101,9 @@
 | Progress | Date Finished | Task  
 |----------|---------------|-----
 | C        | 3/27/2019     | Improve code documentations on preprocess files.
-| NW | NAN| Update the README.md file.
-| NW | NAN| Go through all my scrape work to see what I forgot to describe.
-| NW | NAN| Move all scrape work files to a scrape work folder.
+| C        | 3/30/2019     | Update the README.md file.
+| C        | 3/30/2019     | Go through all my scrape work to see what I forgot to describe.
+| ND | NAN| Move all scrape work files to a scrape work folder.
 | NW | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt
 | NW | NAN | Create directory tree.
