@@ -2,7 +2,7 @@
 
 The basic objective of this repository is to predict the contact map given a sequence of amino acids.
 
-ALMOST THERE!
+**NOTE:** model still needs to be fine tuned and trained on the full dataset
 
 
 
@@ -88,7 +88,7 @@ Here's the contact map prediction: (yellow is contact, purple is no contact, the
 ![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/TR823cmap.png)
 
 
-And here's the aligned 3D structure:
+And here's the aligned 3D structure of the predicted and target:
 
 <p align="center">
 
@@ -99,6 +99,10 @@ And here's the aligned 3D structure:
 The white and cyan area denotes the predicted 3D structure, the gray and orange area represents the actual 3D structure. The orange and cyan area is where there's notable alignment.
 
 The proteins didn't align well, indicating that the model still needs fine tuning and training on the full dataset.
+
+
+
+
 
 
 ## Future Steps
@@ -112,6 +116,8 @@ The proteins didn't align well, indicating that the model still needs fine tunin
 * Predict torsion angles using the amino acid sequence.
 
 * Train multiple models with different parameters and compare.
+
+
 
 
 
