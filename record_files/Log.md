@@ -119,6 +119,7 @@ Possible solutions:
 * implement more regularizers
 * make sure there's correct normalizations going on
 
+See [here](https://github.com/keras-team/keras/issues/3653) for help in implementing weighted outputs.
 
 Job for secondary structure prediction [here](http://raptorx.uchicago.edu/StructurePropertyPred/status/89121447/)
 
@@ -127,3 +128,16 @@ THINGS FINALLY WORKED!!! :smile: :smile: :smile:
 Bit annoying: Confold Server only takes in proteins of max length 500.
 
 Just remember to upload the data for final training.
+
+
+
+# March 30, 2019
+
+See [here](https://www.ks.uiuc.edu/Training/Tutorials/vmd/tutorial-html/node5.html) for visualizing two proteins on top of each other/
+* Actually, scrap that; only works if the two proteins have the exact same number of atoms, which is really unlikely to happen because there will usually be missing atoms / residues in x-ray crystallography (target). 
+
+VMD is giving me a domain error (for aligning the structures) that I was not able to find a solution to (nothing showed up on google searches).
+
+Decided to use the tool [here](http://www.rcsb.org/pdb/workbench/workbench.do?action=menu). Bad plots though.
+
+
