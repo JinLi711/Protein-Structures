@@ -1,13 +1,10 @@
 .DS_Store
 data/
 tertiary_structure_prediction/data/
-RaptorX_Property_Fast/
 .vscode
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 __pychache__
-Porter5/
-research_papers/
 */.cpython-36.pyc/*
 *.pyc
 tertiary_structure_prediction/visualization/test_visualization/plots/

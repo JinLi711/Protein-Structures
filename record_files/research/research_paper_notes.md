@@ -652,3 +652,34 @@ Read only abstract
 
 
 * Decided to stop reading this because I realized it doesn't really talk about how the model is built, but how it was used and its results. However, will definitely look back at this to see what extra elements I can include.
+
+
+# Others:
+* Novel Techniques II (SLIDES)
+    * [LINK](http://liacs.leidenuniv.nl/~bakkerem2/cmb2019/CMB2019_Novel_Techniques_II.pdf)
+* ProteinNet: a standardized data set for machine learning of protein structure
+    * [LINK](https://arxiv.org/abs/1902.00249)
+* Distance-based Protein Folding Powered by Deep Learning 
+    * [LINK](https://arxiv.org/pdf/1811.03481.pdf)
+* Analysis of distance-based protein structure prediction by deep learning in CASP13
+    * [LINK](https://www.biorxiv.org/content/biorxiv/early/2019/05/02/624460.full.pdf)
+* Assessment of contact predictions in CASP12: Co‐evolution and deep learning coming of age
+    * [LINK](https://onlinelibrary.wiley.com/doi/full/10.1002/prot.25407)
+* Accurate prediction of protein contact maps by coupling residual two-dimensional bidirectional long short-term memory with convolutional neural networks
+    * [LINK](https://academic.oup.com/bioinformatics/article/34/23/4039/5040307)
+* Cascaded-CNN: Deep Learning to Predict Protein Backbone Structure from High-Resolution Cryo-EM Density Maps
+    * [LINK](https://www.biorxiv.org/content/10.1101/572990v3.abstract)
+* Protein tertiary structure modeling driven by deep learning and contact distance prediction in CASP13
+    * [LINK](https://www.biorxiv.org/content/10.1101/552422v1.abstract)
+* ResPRE: high-accuracy protein contact prediction by coupling precision matrix with deep residual neural networks
+    * [LINK](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz291/5487385)
+* DESTINI: A deep-learning approach to contact-driven protein structure prediction
+    * [LINK](https://www.nature.com/articles/s41598-019-40314-1)
+* DeepCDpred: Inter-residue distance and contact prediction for improved prediction of protein structure
+    * [LINK](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0205214)
+* Protein Structure Prediction Using Coarse-Grained Models
+    * [LINK](https://link.springer.com/chapter/10.1007/978-3-319-95843-9_2)
+* AlphaFOld
+    * [LINK](https://deepmind.com/blog/alphafold/)
+* AlphaFold at CASP13
+    * [LINK](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz422/5497249)
