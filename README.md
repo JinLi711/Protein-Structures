@@ -54,7 +54,7 @@ This repository contains a deep neural network composed of two residual networks
 
 This is the deep neural network that I tried to build:
 
-![2017 Deep Residual Network](https://github.com/JinLi711/Protein-Structures/blob/master/research/images/journal.pcbi.1005324.g001.PNG)
+![2017 Deep Residual Network](https://github.com/JinLi711/Protein-Structures/blob/master/record_files/research/images/journal.pcbi.1005324.g001.PNG)
 
 Note that `L` is the sequence length, which can be arbitrary, and `n` is the number of features learned from the convnet.
 

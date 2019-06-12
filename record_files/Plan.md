@@ -108,3 +108,5 @@
 | NW | NAN | Create requirements.txt
 | NW | NAN | Create directory tree.
 | NW | NAN | Remove warnings.
+| NW | NAN | Create a Pypi package.
+| NW | NAN | Check pep8 standards.
