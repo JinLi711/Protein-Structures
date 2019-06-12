@@ -1,5 +1,5 @@
 """
-Find the contact map matrixes.
+Find the contact map matrices.
 Need to insert filler residues to missing positions
 to make sure the chain aligns correctly
 with the FASTA sequence.
@@ -12,6 +12,7 @@ from Bio.PDB.Atom import Atom
 from Bio.PDB.Residue import Residue
 from Bio.PDB.PDBParser import PDBParser
 import warnings
+import helper_func as hf
 warnings.filterwarnings("ignore")
 
 
@@ -276,8 +277,8 @@ def get_contact_map(model, path, pdb_file, cutoff, contact=True):
         contact_map = dist_matrix < cutoff
     return contact_map
 
-
-def get_contact_maps(path, cutoff=8.0, train=True, verbose=True):
+@hf.timing_val
+def get_contact_maps(path, pdb_dir, cutoff=8.0, train=True, verbose=True):
     """
     Create a dictionary mapping the PDB ID
     to its contact map.
@@ -286,21 +287,24 @@ def get_contact_maps(path, cutoff=8.0, train=True, verbose=True):
 
     :param path: path to data
     :type  path: str
+    :param pdb_dir: directory of the PDB files
+    :type  pdb_dir: str
     :param cutoff: cutoff for contact distance
     :type  cutoff: float
     :param train: train or not train
     :type  train: bool
     :param verbose: whether to print out statements
     :type  verbose: bool
-    :returns: dict mapping PDB file to contact matrix
-    :rtype:   dict
+    :returns: dict mapping PDB file to contact matrix,
+              list of unused PDB IDs
+    :rtype:   dict, list
     """
 
     from os import listdir
     from os.path import isfile, join
 
     if train:
-        mypath = path + 'pdb_files/'
+        mypath = path + pdb_dir
     else:
         mypath = path 
 
@@ -310,13 +314,13 @@ def get_contact_maps(path, cutoff=8.0, train=True, verbose=True):
 
     # contains pdb files with more than one chain
     # will not calculate contact map if it has more than one chain
-    other_pdb_files = []
+    unused_pdb_ids = []
 
     for pdb_file in pdb_files:
         pdb_id = pdb_file.split('.')[0]
 
-        if verbose:
-            print("PDB File: ", pdb_file)
+        # if verbose:
+            # print("PDB File: ", pdb_file)
 
         structure_id = pdb_file.split('.')[0]
 
@@ -325,7 +329,7 @@ def get_contact_maps(path, cutoff=8.0, train=True, verbose=True):
         # else:
         #     filename = path + pdb_file
 
-        structure = parser.get_structure(structure_id, filename)
+        structure = pdb_parser.get_structure(structure_id, filename)
         model = structure[0]
 
         if len(list(model)) == 1:
@@ -337,14 +341,51 @@ def get_contact_maps(path, cutoff=8.0, train=True, verbose=True):
             )
             contact_maps[pdb_id] = c_map
         else:
-            print("\tThis protein has more than 1 chain.")
-            other_pdb_files.append(pdb_file)
+            # print("\tThis protein has more than 1 chain.")
+            unused_pdb_ids.append(pdb_id)
 
-    return contact_maps
+    return contact_maps, unused_pdb_ids
 
-parser = PDBParser(PERMISSIVE=1)
+pdb_parser = PDBParser(PERMISSIVE=1)
 
 if __name__ == "__main__":
-    path = "../data/cull%i/" % int (sys.argv[1])
-    c_maps = get_contact_maps(path)
-    np.save(path + 'contact_map_matrices.npy', c_maps)
+    import logging
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description='Get the contact maps from the PDB files')
+
+    parser.add_argument(
+        'cull_path', 
+        type=str,
+        help='The path to the cull directory')
+
+    parser.add_argument(
+        'pdb_dir', 
+        type=str,
+        help='Location of PDB files')
+
+    parser.add_argument(
+        'cmap_file', 
+        type=str,
+        help='Numpy file to save the cmap matrices.')
+
+    parser.add_argument(
+        '--log', 
+        type=str,
+        help='Log file')
+
+    args = parser.parse_args()
+
+    path = args.cull_path
+    (c_maps, unused_pdb_ids), time_str = get_contact_maps(path, args.pdb_dir)
+    np.save(path + args.cmap_file, c_maps)
+
+    logging.info(
+        "Used PDB IDs: {}\n\t Unused PDB IDs: {}".format(
+            list(c_maps.keys()),
+            unused_pdb_ids)
+    )
+    logging.info(
+        time_str
+    )

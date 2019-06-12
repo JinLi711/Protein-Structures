@@ -1,19 +1,34 @@
 #!/bin/sh
 
-# Notes to self:
+#TODO: time functions in log
+#TODO: have a reset parameter
+#TODO: calculate total time of preprocess.sh execution
+
+# This file is for preprocessing the protein sequence data for training.
+
+# The first things to do is gather data from the Dunbrack server.
+# LINK: http://dunbrack.fccc.edu/Guoli/PISCES.php
+# The server sends the data to your email.
+
+
+# Notes:
 # Ctrl + C to stop the program from running
 
 
 # the integer corresponds to the cull folder
-cullnum=3
-# whether to run preprocess or not
+# we want multiple cull folders for different parameters
+cullnum=4
+# whether to run preprocess (after all the directories are set up) or not
 runpreprocess=true
 
+log_file="preprocess.log"
+data_dir="../data/cull$cullnum/"
+
 #######################################################################
-# STEP 1: Create folder
+# STEP 1: Set up the cull directory.
 #######################################################################
 
-# create folder called cull$cullnum
+# create the cull folder
 cd ../data
 
 if [ ! -d "cull$cullnum" ]; then
@@ -22,27 +37,32 @@ fi
 
 cd "cull$cullnum"
 
-if [ ! -f "pdb_ids.dat" ]; then
-    touch "pdb_ids.dat"
+# create the files to hold the Dunbrack cull
+pdb_id_file="pdb_ids.dat"
+
+if [ ! -f $pdb_id_file ]; then
+    touch $pdb_id_file
 fi
 
-if [ ! -f "amino_acids.fasta" ]; then
-    touch "amino_acids.fasta"
+aa_file="amino_acids.fasta"
+if [ ! -f $aa_file ]; then
+    touch $aa_file
 fi
 
-cd ../../scripts
+param_file="cull_parameters.md"
+if [ ! -f $param_file ]; then
+    touch $param_file
+fi
 
-# In this directory, you only need to start with 2 files: 
-#   amino_acids.fasta
-#   pdb_ids.dat
-# These files are downloaded from the Dunbrack server.
-# The reason why there are multiple cull folders
-# is that the culled files may have different parameters,
-# affecting the type of data used.
-# The parameters are described in:
-#   cull_parameters.md
+if [ ! -s $pdb_id_file ] && [ ! -s $aa_file ] && [ ! -s $param_file ]; then
+    echo "Download the cull metadata from Dunbrack server and place it in the files first. \nhttp://dunbrack.fccc.edu/Guoli/PISCES.php"
+    exit 1
+fi
 
 
+cd ../../tools
+
+rm preprocess.log
 #######################################################################
 # STEP 2: Get PDB IDs
 #######################################################################
@@ -54,7 +74,9 @@ cd ../../scripts
 # 7ODC,3SWH,2AXP,4EIU
 # We need this text file for downloading PDB files
 # from the Protein Data Bank Website
-python ../preprocess/get_pdb_ids.py $cullnum
+only_pdb_ids_file="pdb_ids.txt"
+python3 ../preprocess/get_pdb_ids.py $data_dir $pdb_id_file $only_pdb_ids_file --log $log_file
+
 
 
 #######################################################################
@@ -64,14 +86,26 @@ python ../preprocess/get_pdb_ids.py $cullnum
 # Now that we have the PDB IDs, we have to download the PDB IDs from 
 # RCSB server. It's as simple as uploading the created text file from
 # step 2.
+# Check only the "PDB" box for "Coordinates"
+# "Experimental Data" boxes should not be checked.
+# The compression type should be "uncompressed"
+# Click "Launch Download", and the server will download a file called "download_rcsb.jnlp"
+# Use that to download the PDB files into pdb_file directory.
 
-cd ../data/cull$cullnum
+cd $data_dir
 
-if [ ! -d "pdb_files" ]; then
-    mkdir "pdb_files"
+pdb_file_dir="pdb_files/"
+if [ ! -d $pdb_file_dir ]; then
+    mkdir $pdb_file_dir
 fi
 
-cd ../../scripts
+if [ -z "$(ls -A $pdb_file_dir)" ]; then
+    echo "You need to download PDB file data from RCSB server. LINK: \nhttps://www.rcsb.org/#Subcategory-download_structures"
+    exit 1
+fi
+
+cd ../../tools
+
 
 
 # All steps below requires you to have downloaded the pdb files
@@ -89,44 +123,46 @@ if [ "$runpreprocess" = true ]; then
 #   multiple chains
 #   does not end in .pdb
 
-cd ../data/cull$cullnum
+cd $data_dir
 
-if [ ! -d "removed_pdb_files" ]; then
-    mkdir "removed_pdb_files"
+rm_dir="removed_pdb_files/"
+
+if [ ! -d $rm_dir ]; then
+    mkdir $rm_dir
 fi
 
-cd ../../scripts
+cd ../../tools
 
-# python ../preprocess/remove_unwanted_pdb_files.py $cullnum
+python3 ../preprocess/remove_unwanted_pdb_files.py $data_dir $rm_dir $pdb_file_dir --log $log_file
 
 
 # Write out a fasta file that contains only the
 # amino acid sequences that we want.
-# python ../preprocess/get_wanted_fasta_seq.py $cullnum
+python3 ../preprocess/get_wanted_fasta_seq.py $data_dir $aa_file "wanted_aa.fasta" $pdb_file_dir --log $log_file
 
-
+cmap_matrices="contact_map_matrices.npy"
 # write out contact maps
-# python ../preprocess/get_contact_maps.py $cullnum
+python3 ../preprocess/get_contact_maps.py $data_dir $pdb_file_dir $cmap_matrices --log $log_file
 
 
 # using the wanted fasta file, write out the amino acid
 # sequence in 1 hot encoded form.
-# python ../preprocess/fasta_to_1_hot_encodings.py $cullnum
+# python3 ../preprocess/fasta_to_1_hot_encodings.py $cullnum
 
 
 # Create train, validate, and development test set.
-python ../preprocess/create_model_sets.py $cullnum
+# python3 ../preprocess/create_model_sets.py $cullnum
 
 
 # remove intermediary files
 # I can actually delete all files in this folder
 # except the final result folder.
 
-# rm ../data/cull$cullnum/amino_acids_1_hot.npy
-# rm ../data/cull$cullnum/contact_map_matrices.npy
+# rm "$data_diramino_acids_1_hot.npy"
+# rm "$data_dircontact_map_matrices.npy"
 
-# rm ../data/cull$cullnum/amino_acids.fasta
-# rm -r ../data/cull$cullnum/removed_pdb_files
+# rm "$data_diramino_acids.fasta"
+# rm "$data_dirremoved_pdb_files"
 
 fi
 
