@@ -55,6 +55,10 @@
 |C         | 3/26/2019     |  Edit bash script with more documentation and make sure everything flows nicely.
 |C         | 3/26/2019     |  Make sure everything runs for a PDB file size of 200.
 |ND | NAN| Create a preprocess output file that describes all relevant information.
+| NW | NAN | Add argument parsing.
+| NW | NAN | Add logging.
+| NW | NAN | Enable multiprocessing for get_contact_maps.py.
+| NW | NAN | Make everything more presentable to people without the background.
 
 
 
@@ -110,3 +114,4 @@
 | NW | NAN | Remove warnings.
 | NW | NAN | Create a Pypi package.
 | NW | NAN | Check pep8 standards.
+| NW | NAN | Make everything more presentable to people without the background.
