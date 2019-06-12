@@ -138,7 +138,8 @@ python3 ../preprocess/remove_unwanted_pdb_files.py $data_dir $rm_dir $pdb_file_d
 
 # Write out a fasta file that contains only the
 # amino acid sequences that we want.
-python3 ../preprocess/get_wanted_fasta_seq.py $data_dir $aa_file "wanted_aa.fasta" $pdb_file_dir --log $log_file
+wanted_aa="wanted_aa.fasta"
+python3 ../preprocess/get_wanted_fasta_seq.py $data_dir $aa_file $wanted_aa $pdb_file_dir --log $log_file
 
 cmap_matrices="contact_map_matrices.npy"
 # write out contact maps
@@ -147,7 +148,8 @@ python3 ../preprocess/get_contact_maps.py $data_dir $pdb_file_dir $cmap_matrices
 
 # using the wanted fasta file, write out the amino acid
 # sequence in 1 hot encoded form.
-# python3 ../preprocess/fasta_to_1_hot_encodings.py $cullnum
+aa_1_hot_matrix="amino_acids_1_hot.npy"
+python3 ../preprocess/fasta_to_1_hot_encodings.py $data_dir $wanted_aa $aa_1_hot_matrix --log $log_file
 
 
 # Create train, validate, and development test set.

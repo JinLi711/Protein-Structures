@@ -1,16 +1,20 @@
 INFO - get_pdb_ids.py 
 	 Number of PDB IDs from get_pdb_ids.py: 9616
 INFO - get_pdb_ids.py 
-	 TIME Function: find_ids_with_single_chain: took: 0.007263898849487305
+	 TIME Function: find_ids_with_single_chain: took: 0.007479667663574219
 INFO - remove_unwanted_pdb_files.py 
 	 Non pdb files: []
 	 Unwanted PDB files: []
 INFO - remove_unwanted_pdb_files.py 
-	 TIME Function: move_pdb_file: took: 0.11542391777038574
+	 TIME Function: move_pdb_file: took: 0.10886502265930176
 INFO - get_wanted_fasta_seq.py 
-	 TIME Function: extract_wanted_fasta: took: 0.11155295372009277
+	 TIME Function: extract_wanted_fasta: took: 0.11138010025024414
 INFO - get_contact_maps.py 
 	 Used PDB IDs: ['1gp6', '16vp']
 	 Unused PDB IDs: []
 INFO - get_contact_maps.py 
-	 TIME Function: get_contact_maps: took: 1.9043259620666504
+	 TIME Function: get_contact_maps: took: 1.9576280117034912
+INFO - fasta_to_1_hot_encodings.py 
+	 TIME Function: convert_fasta_to_1_hot: took: 0.007709980010986328
+INFO - fasta_to_1_hot_encodings.py 
+	 Average amino acid length: 361.0
