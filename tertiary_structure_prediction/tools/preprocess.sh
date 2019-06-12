@@ -19,7 +19,7 @@ cullnum=5
 # whether to process the PDB files (after all the directories are set up) 
 runpreprocess=true
 # whether to reset the files created
-reset=false
+reset=true
 
 # log is stored in scripts folder
 log_file="preprocess.log"

@@ -319,8 +319,8 @@ def get_contact_maps(path, pdb_dir, cutoff=8.0, train=True, verbose=True):
     for pdb_file in pdb_files:
         pdb_id = pdb_file.split('.')[0]
 
-        # if verbose:
-            # print("PDB File: ", pdb_file)
+        if verbose:
+            print("PDB File: ", pdb_file)
 
         structure_id = pdb_file.split('.')[0]
 
@@ -341,7 +341,7 @@ def get_contact_maps(path, pdb_dir, cutoff=8.0, train=True, verbose=True):
             )
             contact_maps[pdb_id] = c_map
         else:
-            # print("\tThis protein has more than 1 chain.")
+            print("\tThis protein has more than 1 chain.")
             unused_pdb_ids.append(pdb_id)
 
     return contact_maps, unused_pdb_ids
