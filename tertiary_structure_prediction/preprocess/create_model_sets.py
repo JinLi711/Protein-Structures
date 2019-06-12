@@ -13,7 +13,7 @@ from random import shuffle
 import os
 import numpy as np
 import sys
-
+import helper_func as hf
 
 def remove_mismatches(aa, c_map):
     """
@@ -26,13 +26,12 @@ def remove_mismatches(aa, c_map):
     :type  aa: dict
     :param c_maps: dictionary mapping PDB ID to
                    contact maps
-    :returns: (input, output) with removed mismatches
-    :rtype:   (dict, dict)
+    :returns: (input, output) with removed mismatches, 
+              list of pdb ids with mismatches
+    :rtype:   (dict, dict, list)
     """
 
-    file = open("log_actions.txt", 'w+')
-    file.write("PDB IDS with mismatched dimensions:\n")
-
+    mismatched_dim_ids = []
     inputs = aa.copy()
     outputs = c_map.copy()
 
@@ -43,11 +42,9 @@ def remove_mismatches(aa, c_map):
         if not ((aa_dim == cmap_dim[0]) and aa_dim == cmap_dim[1]):
             inputs.pop(pdb_id)
             outputs.pop(pdb_id)
-            file.write(pdb_id + '\n')
+            mismatched_dim_ids.append(pdb_id)
 
-    file.close()
-
-    return inputs, outputs
+    return inputs, outputs, mismatched_dim_ids
 
 
 def get_items_from_dict(dict1, list1):
@@ -70,6 +67,9 @@ def create_train_valid_devtest_sets(
         aa,
         c_maps,
         path,
+        aa_file,
+        c_map_file,
+        npy_path,
         train_size=0.7,
         valid_size=0.2):
     """
@@ -84,6 +84,12 @@ def create_train_valid_devtest_sets(
     :type  c_maps: dict
     :param path: path to data
     :type  path: str
+    :param aa_file: file name for aa 1 hot encodings
+    :type  aa_file: str
+    :param c_map_file: file name for cmaps
+    :type  c_map_file: str
+    :param npy_path: path to store the splited data
+    :type  npy_path: str
     :param train_size: Proportion of train set
     :type  train_size: float
     :param valid_size: Proportion of validation set
@@ -122,29 +128,72 @@ def create_train_valid_devtest_sets(
     devtest_cmap_dict = get_items_from_dict(c_maps, devtest_list)
     devtest_aa_dict = get_items_from_dict(aa, devtest_list)
 
-    directory = path + "model_data/"
+    directory = path + npy_path
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    np.save(directory + 'train_cmap_dict.npy', train_cmap_dict)
-    np.save(directory + 'train_aa_dict.npy', train_aa_dict)
+    np.save(directory + 'train_' + c_map_file, train_cmap_dict)
+    np.save(directory + 'train_' + aa_file, train_aa_dict)
 
-    np.save(directory + 'valid_cmap_dict.npy', valid_cmap_dict)
-    np.save(directory + 'valid_aa_dict.npy', valid_aa_dict)
+    np.save(directory + 'valid_' + c_map_file, valid_cmap_dict)
+    np.save(directory + 'valid_' + aa_file, valid_aa_dict)
 
-    np.save(directory + 'devtest_cmap_dict.npy', devtest_cmap_dict)
-    np.save(directory + 'devtest_aa_dict.npy', devtest_aa_dict)
+    np.save(directory + 'devtest_' + c_map_file, devtest_cmap_dict)
+    np.save(directory + 'devtest_' + aa_file, devtest_aa_dict)
 
 
 if __name__ == "__main__":
-    path = "../data/cull%i/" % int (sys.argv[1])
-    c_maps = np.load(path + 'contact_map_matrices.npy')[()]
-    aa_1_hot = np.load(path + 'amino_acids_1_hot.npy')[()]
 
-    aa_1_hot, c_maps = remove_mismatches(aa_1_hot, c_maps)
+    import logging
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description='Get only the fasta sequences that we want.')
+
+    parser.add_argument(
+        'cull_path', 
+        type=str,
+        help='The path to the cull directory')
+
+    parser.add_argument(
+        'c_map', 
+        type=str,
+        help='Numpy file for contact map matrices')
+
+    parser.add_argument(
+        'aa', 
+        type=str,
+        help='Numpy file for amino acid 1 hot encodings.')
+
+    parser.add_argument(
+        'data_dir', 
+        type=str,
+        help='Directory contained the split train, validate, and test set.')
+
+    parser.add_argument(
+        '--log', 
+        type=str,
+        help='Log file')
+
+    args = parser.parse_args()
+
+    path = args.cull_path
+    c_maps = np.load(path + args.c_map)[()]
+    aa_1_hot = np.load(path + args.aa)[()]
+
+    aa_1_hot, c_maps, mismatched_dim_ids = remove_mismatches(aa_1_hot, c_maps)
 
     create_train_valid_devtest_sets(
         aa_1_hot,
         c_maps,
-        path
+        path,
+        args.aa,
+        args.c_map,
+        args.data_dir
+    )
+
+    logging.info(
+        "PDB IDS with mismatched aa/PDB dimensions: {}".format(
+            mismatched_dim_ids
+        )
     )

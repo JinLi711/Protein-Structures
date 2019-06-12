@@ -1,20 +1,48 @@
 INFO - get_pdb_ids.py 
 	 Number of PDB IDs from get_pdb_ids.py: 9616
 INFO - get_pdb_ids.py 
-	 TIME Function: find_ids_with_single_chain: took: 0.007479667663574219
+	 TIME Function: find_ids_with_single_chain: took: 0.007565975189208984
 INFO - remove_unwanted_pdb_files.py 
-	 Non pdb files: []
-	 Unwanted PDB files: []
+	 Non pdb files: ['6rav-pdb-bundle.tar', '6qsx-pdb-bundle.tar']
+	 Unwanted PDB files: ['1go6', '1go3', '12as', '1gmu']
 INFO - remove_unwanted_pdb_files.py 
-	 TIME Function: move_pdb_file: took: 0.10886502265930176
+	 TIME Function: move_pdb_file: took: 0.4537160396575928
 INFO - get_wanted_fasta_seq.py 
-	 TIME Function: extract_wanted_fasta: took: 0.11138010025024414
+	 TIME Function: extract_wanted_fasta: took: 0.13539695739746094
 INFO - get_contact_maps.py 
 	 Used PDB IDs: ['1gp6', '16vp']
 	 Unused PDB IDs: []
 INFO - get_contact_maps.py 
-	 TIME Function: get_contact_maps: took: 1.9576280117034912
+	 TIME Function: get_contact_maps: took: 2.091261863708496
 INFO - fasta_to_1_hot_encodings.py 
-	 TIME Function: convert_fasta_to_1_hot: took: 0.007709980010986328
+	 TIME Function: convert_fasta_to_1_hot: took: 0.007437229156494141
 INFO - fasta_to_1_hot_encodings.py 
 	 Average amino acid length: 361.0
+INFO - create_model_sets.py 
+	 PDB IDS with mismatched aa/PDB dimensions: []
+INFO - get_pdb_ids.py 
+	 Number of PDB IDs from get_pdb_ids.py: 9616
+INFO - get_pdb_ids.py 
+	 TIME Function: find_ids_with_single_chain: took: 0.009713888168334961
+INFO - get_pdb_ids.py 
+	 Number of PDB IDs from get_pdb_ids.py: 9616
+INFO - get_pdb_ids.py 
+	 TIME Function: find_ids_with_single_chain: took: 0.008813142776489258
+INFO - remove_unwanted_pdb_files.py 
+	 Non pdb files: ['6rav-pdb-bundle.tar', '6qsx-pdb-bundle.tar']
+	 Unwanted PDB files: ['1go6', '1go3', '12as', '1gmu']
+INFO - remove_unwanted_pdb_files.py 
+	 TIME Function: move_pdb_file: took: 0.47388577461242676
+INFO - get_wanted_fasta_seq.py 
+	 TIME Function: extract_wanted_fasta: took: 0.13939404487609863
+INFO - get_contact_maps.py 
+	 Used PDB IDs: ['1gp6', '16vp']
+	 Unused PDB IDs: []
+INFO - get_contact_maps.py 
+	 TIME Function: get_contact_maps: took: 1.948016881942749
+INFO - fasta_to_1_hot_encodings.py 
+	 TIME Function: convert_fasta_to_1_hot: took: 0.008140802383422852
+INFO - fasta_to_1_hot_encodings.py 
+	 Average amino acid length: 361.0
+INFO - create_model_sets.py 
+	 PDB IDS with mismatched aa/PDB dimensions: []
