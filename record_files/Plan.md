@@ -12,7 +12,7 @@
 |C         | 3/17/2019     | Find programs to help with protein modeling.
 |C         | 3/13/2019     | Gather PDB ids files for preliminary testing.
 |C         | 3/27/2019     | Add license.
-|NW         | NA     | Find final test set (from CASP or something)
+|C         | 6/12/2019     | Find final test set (from CASP or something)
 
 
 
@@ -56,9 +56,8 @@
 |C         | 6/12/2019     | Add argument parsing.
 |C         | 6/12/2019     | Add logging
 | ND | NAN | Enable multiprocessing for get_contact_maps.py.
-| NW | NAN | Make everything more presentable to people without the background.
-| NW | NAN |  Edit bash script with more documentation and make sure everything flows nicely.
-| NW | NAN |  Make sure everything runs for a PDB file size of 200.
+|C         | 6/12/2019     |  Edit bash script with more documentation and make sure everything flows nicely.
+|C         | 6/12/2019     |  Make sure everything runs for a PDB file size of 200.
 
 
 
@@ -83,9 +82,9 @@
 | C        | 3/28/2019     | Change the sparse cross entropy to binary cross entropy and change the generator accordingly.
 | C        | 3/29/2019     | Implement weighing for a 3 tensor output (implement in generator).
 | C        | 3/30/2019     |  Make sure the model makes sense for a PDB file size of 2000.
-| NW | NAN | Create a train script.
-| NW | NAN | Add arg parsing to model train script.
-| NW | NAN | Add logging.
+| C        | 6/12/2019     | Create a train script.
+| C        | 6/12/2019     | Add arg parsing to model train script.
+| C        | 6/12/2019     | Add logging.
 
 
 
@@ -100,7 +99,7 @@
 | C        | 3/29/2019     | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
 | C        | 3/30/2019     | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
 | C        | 3/30/2019     | Use RSCB alignment tool to superimpose the actual protein structure and the predicted protein structure.
-| NW | NAN | Calculate RMSD of prediction and actual.
+| NW | NAN | Calculate RMSD of prediction and actual for test set.
 
 
 # Step 6: Final Adjustments 
@@ -118,3 +117,4 @@
 | NW | NAN | Create a Pypi package.
 | NW | NAN | Check pep8 standards.
 | NW | NAN | Make everything more presentable to people without the background.
+| NW | NAN | Remove unneccesary commits.
