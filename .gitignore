@@ -7,6 +7,7 @@ tertiary_structure_prediction/data/
 __pychache__
 */.cpython-36.pyc/*
 *.pyc
+*.local
 tertiary_structure_prediction/visualization/test_visualization/plots/
 tertiary_structure_prediction/models/cull1/Logs/
 tertiary_structure_prediction/models/cull1/best_weight/

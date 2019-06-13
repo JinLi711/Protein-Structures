@@ -1,0 +1,36 @@
+WARNING - deprecation.py 
+	 From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/ops/resource_variable_ops.py:435: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+INFO - primary_model.py 
+	 None
+INFO - primary_model.py 
+	 Batch size: 1
+INFO - primary_model.py 
+	 Epochs: 2
+INFO - primary_model.py 
+	 Train steps: 3486
+INFO - primary_model.py 
+	 Validation steps: 996
+WARNING - deprecation.py 
+	 From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+WARNING - deprecation.py 
+	 From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/ops/resource_variable_ops.py:435: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+INFO - primary_model.py 
+	 None
+INFO - primary_model.py 
+	 Batch size: 1
+INFO - primary_model.py 
+	 Epochs: 2
+INFO - primary_model.py 
+	 Train steps: 3486
+INFO - primary_model.py 
+	 Validation steps: 996
+WARNING - deprecation.py 
+	 From /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
