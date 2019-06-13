@@ -845,11 +845,11 @@ if __name__ == "__main__":
             valid_aa_dict, 
             valid_cmap_dict, 
             batch_size),
-        # steps_per_epoch=train_steps,
-        steps_per_epoch=6,
+        steps_per_epoch=train_steps,
+        # steps_per_epoch=6,
         epochs=epochs,
-        # validation_steps=valid_steps,
-        validation_steps=1,
+        validation_steps=valid_steps,
+        # validation_steps=1,
         callbacks=callbacks_list,
     )
 

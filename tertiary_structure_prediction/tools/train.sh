@@ -15,4 +15,4 @@ if [ ! -d "best_weight/" ]; then
     mkdir "best_weight/"
 fi
 
-python3 ../model_functions/primary_model.py $cullnum $cmap_matrices $aa_1_hot_matrix $saved_model --num_layers 10 --epochs 2 --log $log_file
+python3 ../model_functions/primary_model.py $cullnum $cmap_matrices $aa_1_hot_matrix $saved_model --num_layers 14 --epochs 20 --log $log_file
