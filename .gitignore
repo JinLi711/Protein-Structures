@@ -1,7 +1,4 @@
 .DS_Store
-data/*
-!data/.gitkeep 
-tertiary_structure_prediction/data/
 .vscode
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
@@ -9,6 +6,8 @@ __pychache__
 */.cpython-36.pyc/*
 *.pyc
 *.local
+tertiary_structure_prediction/data/*
+!tertiary_structure_prediction/data/cull5/.gitkeep
 tertiary_structure_prediction/visualization/test_visualization/plots/
 tertiary_structure_prediction/models/cull1/Logs/
 tertiary_structure_prediction/models/cull1/best_weight/
