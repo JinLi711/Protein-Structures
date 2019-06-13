@@ -12,7 +12,7 @@
 |C         | 3/17/2019     | Find programs to help with protein modeling.
 |C         | 3/13/2019     | Gather PDB ids files for preliminary testing.
 |C         | 3/27/2019     | Add license.
-|C         | 3/27/2019     | Find final test set (from CASP or something)
+|NW         | NA     | Find final test set (from CASP or something)
 
 
 
@@ -29,9 +29,9 @@
 
 | Progress | Date Finished | Task                  
 |----------|---------------|-----
-| ND | NAN| Find aggregate information on the PDB files / fasta sequences.
 | C        | 3/28/2019     | Visualize contact maps.
 | C        | 3/30/2019     | Tensorboard visualization. Just create an image of the entire model.
+| ND | NAN| Find aggregate information on the PDB files / fasta sequences.
 
 
 # Step 3: Preprocess
@@ -50,15 +50,15 @@
 |C         | 3/23/2019     | Create two files, one containing one hot encodings and another containing the contact maps. The two files have to align. Note that amino acids have varying lengths
 |C         | 3/23/2019     | Split data into train, valid, and developement test set.
 |C         | 3/23/2019     | Delete intermediary files that I created to reduce space use.
-|C         | 3/25/2019     |  Check that the shapes of inputs and outputs match.
+|C         | 3/25/2019     | Check that the shapes of inputs and outputs match.
 |C         | 3/25/2019     | Remove all inputs/outputs from dataset where the shape doesn't match. Note that this should be the very last step; I want to remove as few as possible from this step. Count how many were removed (and which were removed).
-|C         | 3/26/2019     |  Edit bash script with more documentation and make sure everything flows nicely.
-|C         | 3/26/2019     |  Make sure everything runs for a PDB file size of 200.
-|ND | NAN| Create a preprocess output file that describes all relevant information.
-| NW | NAN | Add argument parsing.
-| NW | NAN | Add logging.
-| NW | NAN | Enable multiprocessing for get_contact_maps.py.
+|C         | 6/12/2019     | Create a preprocess output file that describes all relevant information.
+|C         | 6/12/2019     | Add argument parsing.
+|C         | 6/12/2019     | Add logging
+| ND | NAN | Enable multiprocessing for get_contact_maps.py.
 | NW | NAN | Make everything more presentable to people without the background.
+| NW | NAN |  Edit bash script with more documentation and make sure everything flows nicely.
+| NW | NAN |  Make sure everything runs for a PDB file size of 200.
 
 
 
@@ -83,6 +83,9 @@
 | C        | 3/28/2019     | Change the sparse cross entropy to binary cross entropy and change the generator accordingly.
 | C        | 3/29/2019     | Implement weighing for a 3 tensor output (implement in generator).
 | C        | 3/30/2019     |  Make sure the model makes sense for a PDB file size of 2000.
+| NW | NAN | Create a train script.
+| NW | NAN | Add arg parsing to model train script.
+| NW | NAN | Add logging.
 
 
 
@@ -97,16 +100,16 @@
 | C        | 3/29/2019     | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
 | C        | 3/30/2019     | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
 | C        | 3/30/2019     | Use RSCB alignment tool to superimpose the actual protein structure and the predicted protein structure.
-
+| NW | NAN | Calculate RMSD of prediction and actual.
 
 
 # Step 6: Final Adjustments 
 
 | Progress | Date Finished | Task  
 |----------|---------------|-----
-| C        | 3/27/2019     | Improve code documentations on preprocess files.
-| C        | 3/30/2019     | Update the README.md file.
-| C        | 3/30/2019     | Go through all my scrape work to see what I forgot to describe.
+| NW | NAN | Improve code documentations on preprocess files.
+| NW | NAN | Update the README.md file.
+| NW | NAN | Go through all my scrape work to see what I forgot to describe.
 | ND | NAN| Move all scrape work files to a scrape work folder.
 | NW | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt
