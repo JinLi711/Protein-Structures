@@ -719,24 +719,115 @@ callbacks_list = [
 if __name__ == "__main__":
 
     import sys
+    import argparse
+    import logging
 
-    data_path = "../../data/cull%i/model_data/" % int (sys.argv[1])
+    parser = argparse.ArgumentParser(
+        description='Train the model')
 
-    train_aa_dict = np.load(data_path + 'train_aa_dict.npy')[()]
-    train_cmap_dict = np.load(data_path + 'train_cmap_dict.npy')[()]
-    valid_aa_dict = np.load(data_path + 'valid_aa_dict.npy')[()]
-    valid_cmap_dict = np.load(data_path + 'valid_cmap_dict.npy')[()]
-    devtest_aa_dict = np.load(data_path + 'devtest_aa_dict.npy')[()]
-    devtest_cmap_dict = np.load(data_path + 'devtest_cmap_dict.npy')[()]
+    parser.add_argument(
+        'cull_num', 
+        type=str,
+        help='Cull number')
+
+    parser.add_argument(
+        'c_map', 
+        type=str,
+        help='Numpy file for contact map matrices')
+
+    parser.add_argument(
+        'aa', 
+        type=str,
+        help='Numpy file for amino acid 1 hot encodings.')
+
+    parser.add_argument(
+        'save_model', 
+        type=str,
+        help='File to save trained model')
+
+    parser.add_argument(
+        '--num_layers', 
+        type=int,
+        nargs='?',
+        default=60,
+        help='Number of layers of the second residue net of the architecture.')
+
+    parser.add_argument(
+        '--window_size', 
+        type=int,
+        nargs='?',
+        default=3,
+        help='Window size of the second residue net of the architecture.')
+
+    parser.add_argument(
+        '--batch_size', 
+        type=int,
+        nargs='?',
+        default=1,
+        help='Batch size for training.')
+
+    parser.add_argument(
+        '--epochs', 
+        type=int,
+        nargs='?',
+        default=20,
+        help='Number of epochs to train for.')
+
+    parser.add_argument(
+        '--log', 
+        type=str,
+        help='Log file')
+
+    args = parser.parse_args()
+
+    logging.basicConfig(
+        filename=args.log,  
+        level=logging.INFO,
+        format='%(levelname)s - %(filename)s \n\t %(message)s')
 
 
-    model = create_architecture(3, 60)
-    print (model.summary())
+    data_path = "../../data/cull{}/model_data/".format(args.cull_num)
 
-    batch_size = 1
-    epochs=20
+    cmap_matrices = args.c_map
+    aa_1_hot_matrix = args.aa
+    
+    devtest_aa_dict = np.load(data_path + 'devtest_' + aa_1_hot_matrix)[()]
+    devtest_cmap_dict = np.load(data_path + 'devtest_' + cmap_matrices)[()]
+    train_aa_dict = np.load(data_path + 'train_' + aa_1_hot_matrix)[()]
+    train_cmap_dict = np.load(data_path + 'train_' + cmap_matrices)[()]
+    valid_aa_dict = np.load(data_path + 'valid_' + aa_1_hot_matrix)[()]
+    valid_cmap_dict = np.load(data_path + 'valid_' + cmap_matrices)[()]
+
+
+    model = create_architecture(
+        int(args.window_size), 
+        int(args.num_layers)
+    )
+
+    logging.info(
+        model.summary()
+    )
+
+    batch_size = int(args.batch_size)
+    epochs = int(args.epochs)
     train_steps = round(len(train_aa_dict) / batch_size)
     valid_steps = round(len(valid_aa_dict) / batch_size)
+
+    logging.info(
+        "Batch size: {}".format(batch_size)
+    )
+    logging.info(
+        "Epochs: {}".format(epochs)
+    )
+    logging.info(
+        "Train steps: {}".format(train_steps)
+    )
+    logging.info(
+        "Validation steps: {}".format(valid_steps)
+    )
+
+    # from sys import exit
+    # exit()
 
     model.compile(
         optimizer="adam",
@@ -754,13 +845,15 @@ if __name__ == "__main__":
             valid_aa_dict, 
             valid_cmap_dict, 
             batch_size),
-        steps_per_epoch=train_steps,
+        # steps_per_epoch=train_steps,
+        steps_per_epoch=6,
         epochs=epochs,
-        validation_steps=valid_steps,
+        # validation_steps=valid_steps,
+        validation_steps=1,
         callbacks=callbacks_list,
     )
 
-    model.save('my_model.h5') 
+    model.save(args.save_model) 
 
     # to load back the model:
     # model = tf.keras.models.load_model('my_model.h5')
