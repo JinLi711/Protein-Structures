@@ -29,7 +29,7 @@ This repository contains a deep neural network composed of two residual networks
 
 ### Preprocess
 
-1. Download the PDB IDs (IDs that represent a protein) that meet certain conditions. Our parameters were:
+1. Download the PDB IDs (IDs that represent a protein) that meet certain conditions. We used the [Dunbrack server](http://dunbrack.fccc.edu/Guoli/PISCES.php) for downloads. Our parameters were:
     * Sequence percentage identity: <= 25
     * Resolution                  : 0.0 ~ 2.5
     * R-factor                    : 0.3
