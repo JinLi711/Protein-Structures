@@ -4,3 +4,4 @@
 
 chmod u+x preprocess.sh
 chmod u+x create_visuals.sh
+chmod u+x train.sh
