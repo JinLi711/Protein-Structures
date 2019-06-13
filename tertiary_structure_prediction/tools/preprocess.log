@@ -20,3 +20,7 @@ INFO - fasta_to_1_hot_encodings.py
 	 Average amino acid length: 275.66421324845834
 INFO - create_model_sets.py 
 	 PDB IDS with mismatched aa/PDB dimensions: ['5a99', '4c12', '4cek', '2ci1', '2cnq', '5dm2', '4dpz', '4e7g', '3esm', '5evf', '5ezq', '6fx6', '1gkm', '5gqi', '3h75', '2hft', '5ima', '1jbe', '5jiw', '4kbx', '3l8w', '4mt2', '5mul', '5n4i', '5nai', '3ned', '5nf2', '5o2x', '4p27', '3piu', '2pvb', '3q2i', '1qhd', '4r0r', '3sqz', '5t12', '1unq', '4upi', '2uv4', '3vla', '1w4s', '4xfm', '5xil', '5xj5', '4yqd', '4z37', '4zbl']
+INFO - get_pdb_ids.py 
+	 Number of PDB IDs from get_pdb_ids.py: 9616
+INFO - get_pdb_ids.py 
+	 TIME Function: find_ids_with_single_chain: took: 0.0078887939453125
