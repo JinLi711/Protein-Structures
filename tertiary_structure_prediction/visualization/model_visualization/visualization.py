@@ -234,7 +234,7 @@ if __name__ == "__main__":
     else:
         aa_dict = np.load(args.aa_path)[()]
         c_maps = np.load(args.cmap_path)[()]
-        # aa_dict, c_maps = em.sample_dict(aa_dict, c_maps, 10)
+        aa_dict, c_maps = em.sample_dict(aa_dict, c_maps, 30)
 
     c_map_preds = make_prediction(model, aa_dict)
     plot_contact_maps(c_map_preds, c_maps, save_dir="plots/")

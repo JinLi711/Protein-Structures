@@ -3,4 +3,4 @@ WARNING - deprecation.py
 Instructions for updating:
 Colocations handled automatically by placer.
 INFO - visualization.py 
-	 Root mean squared error: 0.18901711251329317
+	 Root mean squared error: 0.2079860353837845
