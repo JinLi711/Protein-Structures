@@ -107,15 +107,15 @@
 
 | Progress | Date Finished | Task  
 |----------|---------------|-----
-| NW | NAN | Improve code documentations on preprocess files.
+| NW | NAN | Improve code documentations.
 | NW | NAN | Update the README.md file.
-| NW | NAN | Go through all my scrape work to see what I forgot to describe.
+| C        | 6/13/2019     | Go through all my scrape work to see what I forgot to describe.
 | ND | NAN| Move all scrape work files to a scrape work folder.
-| NW | NAN| build documentation with Sphinx
+| ND | NAN| build documentation with Sphinx
 | NW | NAN | Create requirements.txt
 | NW | NAN | Create directory tree.
 | NW | NAN | Remove warnings.
-| NW | NAN | Create a Pypi package.
+| ND | NAN | Create a Pypi package.
 | NW | NAN | Check pep8 standards.
 | NW | NAN | Make everything more presentable to people without the background.
 | NW | NAN | Remove unneccesary commits.
