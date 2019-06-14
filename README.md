@@ -82,15 +82,15 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 
 Here's an example run of PDB ID: 2a6z.
 
-
-<p align="center">
 Here's the contact map prediction:
 
+<p align="center">
 <img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_pred.png" alt="Alignment" width="300" height="300"/>
-
+<p>
 
 Contact map actual:
 
+<p align="center">
 <img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_actual.png" alt="Alignment" width="300" height="300"/>
 </p>
 
