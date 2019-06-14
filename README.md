@@ -4,6 +4,8 @@ The basic objective of this repository is to predict the contact map given a seq
 
 **NOTE:** model still needs to be fine tuned and trained on the full dataset
 
+**NOTE:** Single Chain Prediction only
+
 
 
 ## Motivation

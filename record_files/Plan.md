@@ -95,11 +95,12 @@
 | C        | 3/27/2019     | Make sure fasta_to_1_hot_encoding.py is able to take in a never before seem sequence.
 | C        | 3/27/2019     | Set up a short pipeline so I can predict a new fasta sequence.
 | ND | NAN | Learn how to use CNS Solve.
-| NW | NAN | Since we do not have a model to predict secondary structures, we have to run our test amino acid sequences through another server to get more required information to create the tertiary structure in CNS Solve.
+| C        | 6/13/2019     | Since we do not have a model to predict secondary structures, we have to run our test amino acid sequences through another server to get more required information to create the tertiary structure in CNS Solve.
 | C        | 3/29/2019     | Create a file that contains the contact map in PFRMAT RR format, the predicted secondary structure, and the amino acid sequence.
 | C        | 3/30/2019     | Use the contact map (along with secondary structure and amino acid sequence) to create PDB files of predictions using CONFOLD.
 | C        | 3/30/2019     | Use RSCB alignment tool to superimpose the actual protein structure and the predicted protein structure.
-| NW | NAN | Calculate RMSD of prediction and actual for test set.
+| C        | 6/13/2019     | Calculate RMSD of prediction and actual for test set.
+| C        | 6/13/2019     | Write an visualization evaluation script.
 
 
 # Step 6: Final Adjustments 

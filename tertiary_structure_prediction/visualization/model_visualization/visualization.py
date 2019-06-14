@@ -1,6 +1,7 @@
 """
 Visualize the results of applying the model to 
 the test CASP data.
+Also, extract RR format from contact maps.
 
 So far, we will visualize:
     contact maps (predicted, and actual)
@@ -12,17 +13,33 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import importlib
+import pandas as pd
 
 
-def plot_contact_maps(model, fasta_seqs, c_maps, save_dir=None):
+def make_prediction(model, fasta_seqs):
+    """
+    Given fasta sequences, make the contact map 
+    predictions
+    """
+    
+    cmap_predictions = dict()
+    
+    for pdb_id, aa_seq in fasta_seqs.items():
+        one_hot = aa_seq.reshape((1,) + aa_seq.shape)
+        c_map_pred = model.predict(one_hot)
+        length = one_hot.shape[1]
+        c_map_pred = c_map_pred.reshape((length, length))
+        cmap_predictions[pdb_id] = c_map_pred
+        
+    return cmap_predictions
+    
+def plot_contact_maps(c_maps_preds, c_maps, save_dir=None):
     """
     Plot the actual contact maps
     and the predicted contact maps.
 
-    :param model: trained keras model
-    :type  model:
-    :param fasta_seq: dictionary mapping PDB ID to 1 hot 
-    :type  fasta_seq: dict
+    :param c_maps_preds: dictionary mapping PDB ID to predicted c_maps
+    :type  c_maps_preds: dict
     :param c_maps: dictionary mapping PDB ID to c_map
     :type  c_maps: dict
     :param save_dir: directory to save plots
@@ -30,13 +47,8 @@ def plot_contact_maps(model, fasta_seqs, c_maps, save_dir=None):
     """
 
     for pdb_id, cmap in c_maps.items():
-        one_hot = fasta_seqs[pdb_id]
-        one_hot = one_hot.reshape((1,) + one_hot.shape)
-        c_map_pred = model.predict(one_hot)
-
-        length = one_hot.shape[1]
-
-        c_map_pred = c_map_pred.reshape((length, length))
+        c_map_pred = c_maps_preds[pdb_id]
+        
         fig = plt.figure(figsize=(20, 10))
         fig.suptitle("PDB ID: " + pdb_id)
 
@@ -53,6 +65,93 @@ def plot_contact_maps(model, fasta_seqs, c_maps, save_dir=None):
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
             plt.savefig(save_dir + pdb_id + "_cmap.png")
+
+
+def contacts_in_RR_format(contact_map, threshold=8):
+    """
+    Convert the contact map matrix into the RR format.
+    (Note that this is currently unordered)
+
+    Format is:
+
+    i  j  d1  d2  p
+
+    i, j are the indices of the residues in contact.
+    i < j (since the matrix is symmetrical)
+
+    d1 and d2 indicates the threshold for contact.
+    d1 = 0, d2 = 8 Angstrom is the norm.
+
+    p indicates the probability of the two residues 
+    in contact. (0.0-1.0)
+    Contacts should be listed in decreasing order
+
+    Any pair not listed is considered to not be in contact
+
+    See here for more information:
+    http://predictioncenter.org/casp13/index.cgi?page=format
+
+    CONFOLD server requires:
+        E-mail Address
+        Job Id
+        Sequence
+        Secondary Structure
+        Contacts
+        
+    :param contact_map: contact matrix
+    :type  contact_map: numpy array
+    :param threshold: threshold of contact
+    :param threshold: int
+    :returns: a string in the correct format
+    :rtype:   str
+    """
+
+    df = pd.DataFrame(contact_map)
+    columns = df.columns
+
+    contacts = {}
+    for index, row in df.iterrows():
+        for col_num, col in enumerate(columns):
+            prob = row[col]
+            if prob > 0.5:
+                min1 = min(index, col_num)
+                max1 = max(index, col_num)
+                contacts[str(min1) + ' ' + str(max1)] = prob
+    contact_str = ""
+    for resids, prob in contacts.items():
+        contact_str += resids + " 0 " + str(threshold) + " " + str(prob) + '\n'
+    return contact_str
+
+
+def write_out_all_predictions(
+    cmaps, path='coordinate_prediction/', maxlen=500):
+    """
+    Write out the information for all the inputs
+    required for PDB file reconstruction.
+
+    Since Confold server only takes in proteins of maximum length 500,
+    we will impose a cap.
+
+    :param cmaps: dictionary mapping PDB ID to cmap
+    :type  cmaps: dict
+    :param path: path to write out
+    :type  path: str
+    :param 
+    """
+
+    import os
+
+    for pdb_id, cmap in cmaps.items():
+        length = int((cmap.shape[0]))
+
+        if length < maxlen:
+            if not os.path.exists(path):
+                os.makedirs(path)
+
+            out = contacts_in_RR_format(cmap)
+            out_file = open(path + pdb_id + '.txt', "w+")
+            out_file.write(out)
+            out_file.close()
 
 
 if __name__ == "__main__":
@@ -111,13 +210,6 @@ if __name__ == "__main__":
 
 
     path = "../../"
-    # model_path = path + "models/"
-    # test_path = path + "data/test/"
-    # model_path_cull = model_path + "cull%i/" % args.cull_num
-    # devtest_path = path + "data/cull5/model_data/"
-    # fasta_seq_path = test_path + "casp11.fasta"
-    # pdb_path = test_path + "casp11.targets_refine/"
-
     sys.path.insert(0, path + "models/model_functions")
     sys.path.insert(0, path + "preprocess")
 
@@ -142,11 +234,14 @@ if __name__ == "__main__":
     else:
         aa_dict = np.load(args.aa_path)[()]
         c_maps = np.load(args.cmap_path)[()]
-        aa_dict, c_maps = em.sample_dict(aa_dict, c_maps, 10)
+        # aa_dict, c_maps = em.sample_dict(aa_dict, c_maps, 10)
 
-    plot_contact_maps(model, aa_dict, c_maps, save_dir="plots/")
-    rmse = em.calc_rmse(model, aa_dict, c_maps)
+    c_map_preds = make_prediction(model, aa_dict)
+    plot_contact_maps(c_map_preds, c_maps, save_dir="plots/")
+    rmse = em.calc_rmse(c_map_preds, c_maps)
 
     logging.info(
         "Root mean squared error: {}".format(rmse)
     )
+
+    write_out_all_predictions(c_map_preds)

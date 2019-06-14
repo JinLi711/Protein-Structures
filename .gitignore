@@ -8,7 +8,8 @@ __pychache__
 *.local
 tertiary_structure_prediction/data/*
 !tertiary_structure_prediction/data/.gitkeep
-tertiary_structure_prediction/visualization/test_visualization/plots/
+tertiary_structure_prediction/visualization/model_visualization/plots/
+tertiary_structure_prediction/visualization/model_visualization/coordinate_prediction/
 tertiary_structure_prediction/models/cull1/Logs/
 tertiary_structure_prediction/models/cull1/best_weight/
 tertiary_structure_prediction/visualization/test_visualization/coordinate_prediction/
