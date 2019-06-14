@@ -278,7 +278,7 @@ def get_contact_map(model, path, pdb_file, cutoff, contact=True):
     return contact_map
 
 @hf.timing_val
-def get_contact_maps(path, pdb_dir, cutoff=8.0, train=True, verbose=True):
+def get_contact_maps(path, pdb_dir=None, cutoff=8.0, train=True, verbose=True):
     """
     Create a dictionary mapping the PDB ID
     to its contact map.

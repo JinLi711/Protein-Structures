@@ -107,7 +107,7 @@ def sequences_to_dict(seq_gen):
 
 
 @hf.timing_val
-def convert_fasta_to_1_hot(path, fasta_file, train=True):
+def convert_fasta_to_1_hot(path, fasta_file=None, train=True):
     """
     Given a fasta file, create a dictionary
     mapping PDB ID to its sequence in 1 hot encoded form.
