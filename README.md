@@ -6,9 +6,9 @@ This package uses deep learning to predict the contact map given a sequence of a
 
 ## Motivation
 
-Proteins are the key building blocks of life, as it does everything from influencing an organism's growth to managing its internal state. Predicting a protein's structure allows us to understand life-threatening diseases and accelerate drug discovery. However, the current methods of deducing a protein's structure, like X-ray crystallography, can be incredibly difficult, time consuming, and expensive. In addition, while there are around 150,000 protein structure submissions, it is estimated that there are around 6 million different proteins in the human proteome alone. (<cite>[RCSB][1]</cite>, <cite>[Ponomarenko et al.][1]</cite>)   
+Proteins are the key building blocks of life, as it does everything from influencing an organism's growth to managing its internal state. Predicting a protein's structure allows us to understand life-threatening diseases and accelerate drug discovery. However, the current methods of deducing a protein's structure, like X-ray crystallography, can be incredibly difficult, time consuming, and expensive. In addition, while there are around 150,000 protein structure submissions, it is estimated that there are around 6 million different proteins in the human proteome alone. (<cite>[RCSB][2]</cite>, <cite>[Ponomarenko et al.][1]</cite>)
 
-The Nobel Prize winning experiment, the Anfinsen experiment, showed that the shape of the protein determines its function, and that the protein's primary structure (its amino acid sequence) determines its shape under correct conditions. However, predicting the protein's shape just from its amino acid sequence is not a simple task: Levinthal's paradox suggests that trying out all possible configurations of a short 100 residue sequence requires more time than the age of the universe!
+However, predicting the protein's shape just from its amino acid sequence is not a simple task: Levinthal's paradox suggests that trying out all possible configurations of a short 100 residue sequence requires more time than the age of the universe! (<cite>[Zwanzig et al.][3]</cite>)
 
 
 
@@ -17,9 +17,10 @@ The Nobel Prize winning experiment, the Anfinsen experiment, showed that the sha
 
 ## Method
 
-Although there are many methods for determining the shape of a protein just from its amino acid, this repository will mainly focus on predicting the contact map from the starting amino acid sequence. A contact map for an amino acid sequence of length L is simply a matrix of size L x L, where each position i,j is either 1 if residue i, j are close together (they are in contact), or 0 if they are not. The contact map, along with the predicted secondary structure and amino acid sequence, is enough to predict the coordinate positions of each residue.
+Although there are many methods for determining the shape of a protein just from its amino acid, this repository will mainly focus on predicting the contact map from the starting amino acid sequence. A contact map for an amino acid sequence of length `L` is simply a matrix of size `L x L`, where each position `i,j` is either 1 if residue `i, j` are close together (they are in contact), or 0 if they are not. The contact map, along with the predicted secondary structure and amino acid sequence, is enough to predict the coordinate positions of each residue.
 
 This repository contains a deep neural network composed of two residual networks. The amino acid sequence is feed into the first residual network, which is a series of residual 1 dimensional convolution layers. This network is then connected to a residual 2 dimensional network, and outputs the predicted contact map.
+
 
 
 
@@ -33,9 +34,9 @@ This repository contains a deep neural network composed of two residual networks
     * R-factor                    : 0.3
     * Sequence length             : 40 ~ 700
 
-2. Download the fasta file of the PDB IDs (a file containing the amino acid sequence).
+2. Download the fasta file of the PDB IDs (a file containing the amino acid sequence). 
 
-3. Use the PDB IDs to download the PDB files (files containing the target coordinates of each atom of the protein). For simplicity and a more accurate model, we only consider the proteins with 1 chain.
+3. Use the PDB IDs to download the PDB files (files containing the target coordinates of each atom of the protein). The data can be downloaded from the [RCSB](https://www.rcsb.org/#Subcategory-download_structures) website. For simplicity and a more accurate model, we only consider the proteins with 1 chain.
 
 4. Convert the amino acid sequence into one hot encoding (this is the input).
 
@@ -65,11 +66,12 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 
 ### From Contact Map to 3D Structure
 
-1. After training the model to predict the contact map, feed the amino acid sequence to RaptorX to generate the protein's secondary structure. 
+1. After training the model to predict the contact map, we feed the amino acid sequence to [RaptorX](http://raptorx.uchicago.edu/) to generate the protein's secondary structure. 
 
-2. The contact map, secondary structure, and amino acid sequence is then fed into the Confold server, where it generates the predicted PDB file.
+2. The contact map, secondary structure, and amino acid sequence is then fed into the [CONFOLD](http://protein.rnet.missouri.edu/confold/) server, where it generates the predicted PDB file.
 
-3. Use RCSB PDB Protein Comparison Tool to align the predicted 3D structure with the actual 3D structure.
+3. Then we use the [RCSB PDB Structure Alignment](http://www.rcsb.org/pdb/workbench/workbench.do?action=menu) tool to align the predicted 3D structure with the actual 3D structure.
+
 
 
 
@@ -78,23 +80,28 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 
 ## Results
 
-I randomly chose a protein from the CASP11 (TR823) and ran it through the model to reconstruct the 3D structure.
+Here's an example run of PDB ID: 2a6z.
 
 
-Here's the contact map prediction: (yellow is contact, purple is no contact, the axis describes the position of amino acids):
 
-![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/TR823cmap.png)
+Here's the contact map prediction:
+
+![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_pred.png)
+
+Contact map actual:
+
+![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_actual)
 
 
 And here's the aligned 3D structure of the predicted and target:
 
 <p align="center">
 
-<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/align.png" alt="Alignment" width="300" height="300"/>
+<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_aligned" alt="Alignment" width="300" height="300"/>
 
 </p>
 
-The white and cyan area denotes the predicted 3D structure, the gray and orange area represents the actual 3D structure. The orange and cyan area is where there's notable alignment.
+The orange and cyan area is where there's notable alignment.
 
 **The proteins didn't align well, indicating that the model still needs fine tuning and training on the full dataset.**
 
@@ -120,9 +127,12 @@ The white and cyan area denotes the predicted 3D structure, the gray and orange 
 
 
 
+
 ## Extra Notes 
 
 * All the python notebooks are scrap work for testing purposes. The cleaned code is in the scripts.
+
+
 
 
 
@@ -142,5 +152,13 @@ Some major differences between this model and the model from the paper:
 * I used binary crossentropy instead of average log.
 * The second residual network is only 14 layers rather than 60 because I came across out of memory issues on Google Colab.
 
+
+
+
+
+
+
+
 [1]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4889822/
 [2]:https://www.rcsb.org/stats/growth/overall
+[3]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC48166/
