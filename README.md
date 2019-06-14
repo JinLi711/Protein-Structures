@@ -105,7 +105,6 @@ And here's the aligned 3D structure of the predicted and target:
 
 The orange and cyan area is where there's notable alignment.
 
-**The proteins didn't align well, indicating that the model still needs fine tuning and training on the full dataset.**
 
 
 
