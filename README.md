@@ -61,7 +61,7 @@ This is the deep neural network that I tried to build:
 Note that `L` is the sequence length, which can be arbitrary, and `n` is the number of features learned from the convnet.
 
 
-[Here](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/graph_run%3D.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see [Acknowledgements](https://github.com/JinLi711/Protein-Structures#acknowledgements)).
+[Here](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/graph_run%3D.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see [Acknowledgements](https://github.com/JinLi711/Protein-Structures#acknowledgements)).
 
 
 
@@ -87,14 +87,14 @@ I randomly chose a protein from the CASP11 (TR823) and ran it through the model 
 
 Here's the contact map prediction: (yellow is contact, purple is no contact, the axis describes the position of amino acids):
 
-![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/TR823cmap.png)
+![Contact Map Prediction](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/TR823cmap.png)
 
 
 And here's the aligned 3D structure of the predicted and target:
 
 <p align="center">
 
-<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/test_visualization/chosen_plots/align.png" alt="Alignment" width="300" height="300"/>
+<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/align.png" alt="Alignment" width="300" height="300"/>
 
 </p>
 
