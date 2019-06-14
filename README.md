@@ -1,16 +1,12 @@
 # Protein Structure Prediction
 
-The basic objective of this repository is to predict the contact map given a sequence of amino acids.
-
-**NOTE:** model still needs to be fine tuned and trained on the full dataset
-
-**NOTE:** Single Chain Prediction only
+This package uses deep learning to predict the contact map given a sequence of amino acids.
 
 
 
 ## Motivation
 
-Proteins are one of the most important fundamental building blocks of life, making it very important to study their functions. However, the current methods of figuring out a protein's structure, like X-ray crystallography, are incredibly difficult and time consuming. 
+Proteins are the key building blocks of life, as it does everything from influencing an organism's growth to managing its internal state. Predicting a protein's structure allows us to understand life-threatening diseases and accelerate drug discovery. However, the current methods of deducing a protein's structure, like X-ray crystallography, can be incredibly difficult, time consuming, and expensive. In addition, while there are around 150,000 protein structure submissions, it is estimated that there are around 6 million different proteins in the human proteome alone. <cite>[Ponomarenko et al.][1]</cite>   
 
 The Nobel Prize winning experiment, the Anfinsen experiment, showed that the shape of the protein determines its function, and that the protein's primary structure (its amino acid sequence) determines its shape under correct conditions. However, predicting the protein's shape just from its amino acid sequence is not a simple task: Levinthal's paradox suggests that trying out all possible configurations of a short 100 residue sequence requires more time than the age of the universe!
 
@@ -145,3 +141,5 @@ Some major differences between this model and the model from the paper:
 * I did not include pairwise features, predicted secondary structure, predicted solvent accessibility as inputs (all these features individual require an entirely different project in itself)
 * I used binary crossentropy instead of average log.
 * The second residual network is only 14 layers rather than 60 because I came across out of memory issues on Google Colab.
+
+[1]:https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4889822/
