@@ -582,7 +582,7 @@ def create_architecture(
         regularizer=tf.keras.regularizers.l2(0.001)
     )
 
-    x = OuterProduct2(
+    x = OuterProduct(
     )(x)
 
     # x = tf.keras.layers.Conv2D(
@@ -704,7 +704,7 @@ early = tf.keras.callbacks.EarlyStopping(
     verbose=2,
     # training is interrupted when the monitor argument 
     # stops improving after n steps
-    patience=15
+    patience=3
 )
 
 callbacks_list = [
@@ -749,7 +749,7 @@ if __name__ == "__main__":
         '--num_layers', 
         type=int,
         nargs='?',
-        default=60,
+        default=14,
         help='Number of layers of the second residue net of the architecture.')
 
     parser.add_argument(
@@ -791,8 +791,8 @@ if __name__ == "__main__":
     cmap_matrices = args.c_map
     aa_1_hot_matrix = args.aa
     
-    devtest_aa_dict = np.load(data_path + 'devtest_' + aa_1_hot_matrix)[()]
-    devtest_cmap_dict = np.load(data_path + 'devtest_' + cmap_matrices)[()]
+    # devtest_aa_dict = np.load(data_path + 'devtest_' + aa_1_hot_matrix)[()]
+    # devtest_cmap_dict = np.load(data_path + 'devtest_' + cmap_matrices)[()]
     train_aa_dict = np.load(data_path + 'train_' + aa_1_hot_matrix)[()]
     train_cmap_dict = np.load(data_path + 'train_' + cmap_matrices)[()]
     valid_aa_dict = np.load(data_path + 'valid_' + aa_1_hot_matrix)[()]
