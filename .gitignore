@@ -5,6 +5,7 @@
 __pychache__
 */.cpython-36.pyc/*
 *.pyc
+*.h5
 *.local
 tertiary_structure_prediction/data/*
 !tertiary_structure_prediction/data/.gitkeep
