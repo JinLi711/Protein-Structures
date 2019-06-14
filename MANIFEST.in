@@ -1,0 +1,2 @@
+include DeepProteinPred/models/cull5/best_weight/Double_Resid_Network_weights.best.hdf5
+recursive-include DeepProteinPred/tools/ *
