@@ -51,14 +51,14 @@ This repository contains a deep neural network composed of two residual networks
 
 ### Neural Network Set Up
 
-This is the deep neural network that I tried to build:
+This is the deep neural network that is built in this repository:
 
 ![2017 Deep Residual Network](https://github.com/JinLi711/Protein-Structures/blob/master/record_files/research/images/journal.pcbi.1005324.g001.PNG)
 
-Note that `L` is the sequence length, which can be arbitrary, and `n` is the number of features learned from the convnet.
+Note that `L` is the sequence length, which can be arbitrary, and `n` is the number of features learned from the deep convolutional neural network.
 
 
-[Here](https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/graph_run%3D.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see [Acknowledgements](https://github.com/JinLi711/Protein-Structures#acknowledgements)).
+[Here](DeepProteinPred/visualization/model_visualization/chosen_plots/graph_run.png) is a tensorboard visualization of the created model. Note that this has a few differences from the above model (see [Acknowledgements](https://github.com/JinLi711/Protein-Structures#acknowledgements)).
 
 
 
@@ -71,42 +71,6 @@ Note that `L` is the sequence length, which can be arbitrary, and `n` is the num
 2. The contact map, secondary structure, and amino acid sequence is then fed into the [CONFOLD](http://protein.rnet.missouri.edu/confold/) server, where it generates the predicted PDB file.
 
 3. Then we use the [RCSB PDB Structure Alignment](http://www.rcsb.org/pdb/workbench/workbench.do?action=menu) tool to align the predicted 3D structure with the actual 3D structure.
-
-
-
-
-
-
-
-## Results
-
-Here's an example run of PDB ID: 2a6z.
-
-Here's the contact map prediction:
-
-<p align="center">
-<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_pred.png" alt="Alignment" width="300" height="300"/>
-<p>
-
-Contact map actual:
-
-<p align="center">
-<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_actual.png" alt="Alignment" width="300" height="300"/>
-</p>
-
-
-And here's the aligned 3D structure of the predicted and target:
-
-<p align="center">
-
-<img align="center" src="https://github.com/JinLi711/Protein-Structures/blob/master/tertiary_structure_prediction/visualization/model_visualization/chosen_plots/2a6z_aligned.png" alt="Alignment" width="300" height="300"/>
-
-</p>
-
-The orange and cyan area is where there's notable alignment.
-
-
-
 
 
 
